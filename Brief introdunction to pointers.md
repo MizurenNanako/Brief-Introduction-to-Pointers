@@ -41,7 +41,7 @@
 > ref ver 2.4
 
 <h1 id="h1">C语言指针指北</h1>
-<table><tr><td width="80"> <a href="https://gitee.com/Tomnycui"><img id="i0" src="https://static.wikia.nocookie.net/cultistsimulator_gamepedia_en/images/e/e4/Knock.png/revision/latest/scale-to-width-down/100?cb=20180927063719"></a> </td> <td style="word-break:break-all"> <i>阅读本文，你将得到： <bk/> 对<b>内存</b>、<b>指针</b>、<b>字符串</b>、<b>函数调用和参数传递</b>、<b>文件操作</b> 的深刻理解。</i> </td> </tr></table>
+<table><tr><td width="80"> <a href="https://gitee.com/Tomnycui"><img id="i0" src="./Knock.png"></a> </td> <td style="word-break:break-all"> <i>阅读本文，你将得到： <bk/> 对<b>内存</b>、<b>指针</b>、<b>字符串</b>、<b>函数调用和参数传递</b>、<b>文件操作</b> 的深刻理解。</i> </td> </tr></table>
 
 <table style="max-width:800px">
 <tr>
@@ -50,11 +50,11 @@
 <tr>
     <td colspan="2"><b><div align="center">C语言指针指北：目录</div></b></td>
 </tr>
-<tr><td width="50"><a href="#h1"><img src="https://static.wikia.nocookie.net/cultistsimulator_gamepedia_en/images/e/e4/Knock.png/revision/latest/scale-to-width-down/100?cb=20180927063719"></a></td><td>启：启之秘术之启</td></tr>
-<tr><td><a href="#cp1"><img src="https://static.wikia.nocookie.net/cultistsimulator_gamepedia_en/images/e/ed/The_Byzantine_Tinct.png/revision/latest?cb=20190228222246"></a></td><td>第一节：(静态)内存模型的引入</td></tr>
-<tr><td><a href="#cp2"><img src="https://static.wikia.nocookie.net/cultistsimulator_gamepedia_en/images/5/5a/Geminiadfucine.png/revision/latest?cb=20190311225032"></a></td><td>第二节(上)：指针！指针！</td></tr>
-<tr><td><a href="#cp2s1"><img src="https://static.wikia.nocookie.net/cultistsimulator_gamepedia_en/images/e/ec/Influenceknockg.png/revision/latest/scale-to-width-down/260?cb=20190424212946"></a></td><td>第二节(下)：指针：觉醒</td></tr>
-<tr><td><a href="#cp3"><img src="https://static.wikia.nocookie.net/cultistsimulator_gamepedia_en/images/2/2d/Manualdeparturevak.png/revision/latest/scale-to-width-down/260?cb=20190311225056"></a></td><td>第三节：指针、数组、字符串</td></tr>
+<tr><td width="50"><a href="#h1"><img src="./Knock.png"></a></td><td>启：启之秘术之启</td></tr>
+<tr><td><a href="#cp1"><img src="./The_Byzantine_Tinct.png"></a></td><td>第一节：(静态)内存模型的引入</td></tr>
+<tr><td><a href="#cp2"><img src="./Geminiadfucine.png"></a></td><td>第二节(上)：指针！指针！</td></tr>
+<tr><td><a href="#cp2s1"><img src="./Influenceknockg.png"></a></td><td>第二节(下)：指针：觉醒</td></tr>
+<tr><td><a href="#cp3"><img src="./Manualdeparturevak.png"></a></td><td>第三节：指针、数组、字符串</td></tr>
 </table>
 </td>
 <td>
@@ -65,7 +65,7 @@
 </table>
 
 <h2 id="cp1">第一节：(静态)内存模型的引入</h2>
-<table><tr><td width="80px"><a href="#h1"><img id="i1" src="https://static.wikia.nocookie.net/cultistsimulator_gamepedia_en/images/e/ed/The_Byzantine_Tinct.png/revision/latest?cb=20190228222246"></a> </td> <td style="word-break:break-all"> <i>C是<b>直接操作机器</b>的语言之一。因此，在讨论主要用于直接操作内存的指针前，需要先介绍静态的内存模型。</i> </td> </tr> </table>
+<table><tr><td width="80px"><a href="#h1"><img id="i1" src="./The_Byzantine_Tinct.png"></a> </td> <td style="word-break:break-all"> <i>C是<b>直接操作机器</b>的语言之一。因此，在讨论主要用于直接操作内存的指针前，需要先介绍静态的内存模型。</i> </td> </tr> </table>
 
 ### 什么是内存模型？
 
@@ -87,7 +87,7 @@ A byte is the smallest addressable unit of memory. It is defined as a contiguo
 
 - 字节是可访问的最小<ruby>内存单位<rt>memory unit</rt></ruby>；
 - 字节的<ruby>地址<rt>address</rt></ruby>具有唯一性；
-- 字节的<ruby>地址<rt>address</rt></ruby>具有<ruby>连续性<rt>在正整数集内的</rt></ruby>；
+- 字节的<ruby>地址<rt>address</rt></ruby>具有<ruby>后继性<rt>在整数集内的</rt></ruby>；<span class="heimu"><details><summary>解释：「后继性」</summary><blockquote><p>「后继性」指一个元素有其「后继者」的性质。<br/>例如：`0` 的后继是 `1`，`1` 的后继是 `2`，……<br/><i>由于这条性质来自于自然数，因此不妨看看其来源：<a href="https://encyclopediaofmath.org/wiki/Peano_axioms">Encyclopedia of Math: Peano_axioms</a></i></p></blockquote></details></span>
 
 <font color="#71AEE2"><b>就这？</b></font>
 <font color="#AC6E46"><b>就这。这已经是完整的（静态）内存模型的概念了。</b></font>
@@ -96,7 +96,7 @@ A byte is the smallest addressable unit of memory. It is defined as a contiguo
 <font color="71AEE2"><b>所以介绍这个到底有什么用呢？<ruby>（半恼）<rt><i>赫尔墨特有急躁</i></rt></ruby></b></font>
 
 <h2 id="cp2">第二节：指针！指针！</h2>
-<table><tr><td width="80"><a href="#h1"><img id="i2" src="https://static.wikia.nocookie.net/cultistsimulator_gamepedia_en/images/5/5a/Geminiadfucine.png/revision/latest?cb=20190311225032"></a> </td><td> <i>The Pointers permits no seal and no isolation. It thrusts us gleefully out of the safety of ignorance.</i> </td></tr></table>
+<table><tr><td width="80"><a href="#h1"><img id="i2" src="./Geminiadfucine.png"></a> </td><td> <i>The Pointers permits no seal and no isolation. It thrusts us gleefully out of the safety of ignorance.</i> </td></tr></table>
 
 如上文所说，C作为强大的底层语言，具有直接操作硬件<small><span class="heimu">（尤其是内存）</span></small>的能力，这种能力的体现就是指针。
 一切在内存上的数据<small><span class="heimu">（包括系统和其他程序的数据和本体）</span></small>都在指针的操作范围内。<small><span class="heimu">（一个著名的例子是 Cheat Engine 的内存修改）</span></small>
@@ -152,7 +152,7 @@ A byte is the smallest addressable unit of memory. It is defined as a contiguo
 现在我们有指针了。
 
 <h3 id="cp2s1">指针：觉醒</h3>
-<table><tr><td width="80"><a href="#h1"><img id="i1" src="https://static.wikia.nocookie.net/cultistsimulator_gamepedia_en/images/e/ec/Influenceknockg.png/revision/latest/scale-to-width-down/260?cb=20190424212946"></a> </td> <td> <i>There is a Door that should not open, and even now its hinges are roused...... </i> </td> </tr> </table>
+<table><tr><td width="80"><a href="#h1"><img id="i1" src="./Influenceknockg.png"></a> </td> <td> <i>There is a Door that should not open, and even now its hinges are roused...... </i> </td> </tr> </table>
 
 <h4>指针最基础的运用：储存地址</h4>
 
@@ -279,13 +279,13 @@ short *p_short = &a;
 
 <h2 id="cp3"> 第三节：指针、数组、字符串 </h2>
 
-<table><tr><td width="80"> <a href="#h1"><img id="i0" src="https://static.wikia.nocookie.net/cultistsimulator_gamepedia_en/images/2/2d/Manualdeparturevak.png/revision/latest/scale-to-width-down/260?cb=20190311225056"></a> </td> <td> <i> The Wound and the Threshold and the Revelation are all the Gate's aspects, and here is their secret doctrine...</i> </td> </tr></table>
+<table><tr><td width="80"> <a href="#h1"><img id="i0" src="./Manualdeparturevak.png"></a> </td> <td> <i> The Wound and the Threshold and the Revelation are all the Gate's aspects, and here is their secret doctrine...</i> </td> </tr></table>
 
 > 指针出现的初衷是为了操作任意内存上的数据，因此，用尽量少的指针变量控制和管理尽量大的内存区域，就成为了一个必须解决的问题。
 > 不妨回顾一下内存模型：
 > 1. 字节是可访问的最小内存单位；
 > 2. 字节的地址具有唯一性；
-> 3. 字节的地址具有在正整数集内的连续性；
+> 3. 字节的地址具有在整数集内的后继性；
 > 
 > 其中，条件 (1) 已用于推出变量的本质；条件 (2) 建立了从地址到变量的映射关系<small><span class="heimu">（「寻址」和「间接访问」）</span></small>，而条件 (3) 还没有被使用。
 
@@ -293,6 +293,20 @@ short *p_short = &a;
 > **3.1. 在已知一个地址 p 的条件下，p 减去一个不大于自身的正整数或加上一个任意大小的正整数后，得到的仍为合法的地址。**
 
 这个性质用在指针上，就得到了指针的一个功能（性质）：**指针偏移**。
+
+<font color="#71AEE2"><b>我明白了，前面的递增和递减运算符是用来计算指针偏移的！</b></font>
+<font color="#AC6E46"><b>是的。不仅如此，数加和数减也是用于计算指针偏移的。</b></font>
+
+指针偏移本质上是地址的计算。
+为了说明这类操作可以怎么用，我们得先找一片连续的内存区域。在这里，选用数组的方式来实现。<details><summary>解释：「数组」</summary><blockquote><p><small>对于数组的认识，本来假定读者已经熟悉，但此处不妨作为一个复习。</small><br/><b><ruby>数组<rt>Array</rt></ruby></b>是一种在内存中连续分配<span class="heimu">（占有连续的内存区域）</span>的、固定长度的数据结构。显然：一个储存 `<type>` 类型变量的长度为 `N` 的数组占有内存大小为：<br/>`N * sizeof(<type>)`</p></blockquote></details>
+
+先整一个数组：
+
+```cpp
+int array[114514] = {1, 9, 1, 9, 8, 1, 0};
+```
+
+就这样我们获得了一个名为 `array` 的，长度为 `114514`，第 `0~6` 个元素已经指定<small><span class="heimu">（依次为1、9、1、9、8、1、0）</span></small>的数组。
 
 （未完待续）
 
