@@ -45,20 +45,21 @@
 
 <table style="max-width:800px">
 <tr>
-<td width="320">
+<td width="">
 <table>
 <tr>
     <td colspan="2"><b><div align="center">C语言指针指北：目录</div></b></td>
 </tr>
 <tr><td width="50"><a href="#h1"><img src="./Knock.png"></a></td><td>启：启之秘术之启</td></tr>
-<tr><td><a href="#cp1"><img src="./The_Byzantine_Tinct.png"></a></td><td>第一节：(静态)内存模型的引入</td></tr>
-<tr><td><a href="#cp2"><img src="./Geminiadfucine.png"></a></td><td>第二节(上)：指针！指针！</td></tr>
-<tr><td><a href="#cp2s1"><img src="./Influenceknockg.png"></a></td><td>第二节(下)：指针：觉醒</td></tr>
-<tr><td><a href="#cp3"><img src="./Manualdeparturevak.png"></a></td><td>第三节：指针、数组、字符串</td></tr>
+<tr><td><a href="#cp1"><img src="./The_Byzantine_Tinct.png"></a></td><td style="word-break:break-all">第一节：<br/>(静态)内存模型的引入</td></tr>
+<tr><td><a href="#cp2"><img src="./Geminiadfucine.png"></a></td><td>第二节(上)：<br/>指针！指针！</td></tr>
+<tr><td><a href="#cp2s1"><img src="./Influenceknockg.png"></a></td><td>第二节(下)：<br/>指针：觉醒</td></tr>
+<tr><td><a href="#cp3"><img src="./Manualdeparturevak.png"></a></td><td>第三节：<br/>指针、数组、字符串</td></tr>
+<tr><td><a href="#cp4"><img src="./Consecrated_Lintel.webp"></a></td><td>第四节：<br/>地址的传递</td></tr>
 </table>
 </td>
 <td>
-<img src="https://static.wikia.nocookie.net/cultistsimulator_gamepedia_en/images/2/25/The_Wreck_of_the_Christabel.png/revision/latest/scale-to-width-down/260?cb=20190219094258">
+<img src="./The_Wreck_of_the_Christabel.webp">
 <br/>
 <blockquote><p>June the 28th, once again.</p></blockquote>
 </td>
@@ -297,7 +298,7 @@ short *p_short = &a;
 <font color="#71AEE2"><b>我明白了，前面的递增和递减运算符是用来计算指针偏移的！</b></font>
 <font color="#AC6E46"><b>是的。不仅如此，数加和数减也是用于计算指针偏移的。</b></font>
 
-指针偏移本质上是地址的计算。
+**指针偏移本质上是地址的计算。**
 为了说明这类操作可以怎么用，我们得先找一片连续的内存区域。在这里，选用数组的方式来实现。<details><summary>解释：「数组」</summary><blockquote><p><small>对于数组的认识，本来假定读者已经熟悉，但此处不妨作为一个复习。</small><br/><b><ruby>数组<rt>Array</rt></ruby></b>是一种在内存中连续分配<span class="heimu">（占有连续的内存区域）</span>的、固定长度的数据结构。显然：一个储存 `<type>` 类型变量的长度为 `N` 的数组占有内存大小为：<br/>`N * sizeof(<type>)`</p></blockquote></details>
 
 先整一个数组：
@@ -308,10 +309,64 @@ int array[114514] = {1, 9, 1, 9, 8, 1, 0};
 
 就这样我们获得了一个名为 `array` 的，长度为 `114514`，第 `0~6` 个元素已经指定<small><span class="heimu">（依次为1、9、1、9、8、1、0）</span></small>的数组。
 
-（未完待续）
+显然，我们可以取其中一个元素的地址出来看看：
 
-## 第四节：地址的传递
+```cpp
+// 0 1 2 3 4 5 6 ......
+// 1 9 1 9 8 1 0 ......
+//     ↑Here
+int *needle = *(array[2]);
+```
 
+显然现在 `*needle` 是 `1`，
+同时有：
+
+|表达式|值|表达式|值|
+|---|---|---|---|
+|`*(needle - 2)`|`1`|`*(needle + 2)`|`8`|
+|`*(needle - 1)`|`9`|`*(needle + 3)`|`1`|
+|`*(needle + 1)`|`9`|`*(needle + 4)`|`0`|
+
+<font color="#71AEE2"><b>哇哦，这不是和那个方括号一样吗？</b></font>
+<font color="#AC6E46"><b>实际上，`operator[]` 本身就会展开，例如 `array[5]` 会展开成 `*(array + 5)` 这种形式。</b></font>
+<font color="#71AEE2"><b>我开始理解为什么C的数组下标是从 `0` 开始的了……</b></font>
+<font color="#71AEE2"><b>慢着，你刚刚写的是 `*(array + 5)` 是吧？！！也就是说——`array` 也是指针？？？</b></font>
+<font color="#AC6E46"><b>是的！`array` 指向的，就是数组的第一个元素。</b></font>
+<font color="#AC6E46"><b>不仅如此，指针加整数的运算，是具有交换性的——也就是说，`array + 2` 等价于 `2 + array`。</b></font>
+<font color="#71AEE2"><b>你的意思是说……我可以将 `array[2]` 写成 `2[array]` 吗？！</b></font>
+<font color="#AC6E46"><b>完全可以。</b></font>
+
+<font color="Gold"><b>[WARNING: ]</font> 接下来开始提及的内容请务必认真注意。</b>
+
+注意到刚刚我们使用的数组下标是在定义范围内的。如果使用范围外的内存会发生什么？<small><span class="heimu">例如：数组下标越界、指针指向的地址是你不该动的……</span></small>
+<blockquote><div align="center">我很想这么说：「什么都不会发生。」<br/>但我的运气实在是太坏了。</div><div align="right">——沃·兹基硕德</div></blockquote>
+
+实际上，一切皆有可能，包括系统崩溃。
+这是因为：内存是连续的，理论上合法的内存地址是 <code>0~2<sup>64</sup> - 1</code> ，因此只要是这个范围内的地址指向的 `byte`，都是可以访问的——唯一问题是这些 `byte` 是不是你能用的——例如别的程序（包括系统）的内存区域。<b>一旦动了你不该动的数据，很可能就是你的程序<font color="Orange" size="5">寄</font>或被你攻击的程序<font color="Orange" size="5">寄</font>。</b>
+
+<font color="#71AEE2"><b>不是，为什么我的程序会<font size="5">寄</font>？<font>¯\\\_(ツ)\_\/¯</font></b></font>
+<font color="#AC6E46"><b>因为如果你尝试动操作系统的内存，对面有（很大）几率先下手为强。（笑）</b></font>
+<font color="#71AEE2"><b>那我只用自己的内存就好了罢！ (┙>∧<)┙へ┻┻</b></font>
+
+但是也有一个好消息：万一崩系统了，重启就好了。
+
+然后这节就结束了。
+<details><summary>知识扩充：「慢着慢着，你还没讲字符串呢！」</summary><blockquote><s>出现在标题不代表会讲。</s><br/>字符串实际上是一种特殊的数组：
+
+1. 所有元素都是 `char`；
+2. 至少有一个元素为 `'\0'`。
+<span class="heimu"><code class="heimu">'\0'</code> 是一个特殊字符，ascii值是 <code class="heimu">0</code>，又称0字符，用于标记字符串的结尾。</span>
+
+满足以上两条的数组才能叫字符串。例如数组：
+```cpp
+char str_a[] = {'H', 'e', 'l', 'l', 'o', '\0'};
+```
+等价于 `char str_b[] = "Hello";`
+</blockquote></details>
+
+
+<h2 id="cp4"> 第四节：地址的传递 </h2>
+<table><tr><td width="80"><a href="#h1"><img src="./Consecrated_Lintel.webp"></a> </td><td> <i>This is the skull of a door through which power has passed.</i> </td></tr></table>
 未完待续
 
 ## 第五节：指针的第二种形态
