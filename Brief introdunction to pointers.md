@@ -38,7 +38,7 @@
 <body>
 <div style="width: 100%; min-width: 450px; max-width:800px">
 
-> ref ver 2.4
+> ref ver 3.4
 
 <h1 id="h1">C语言指针指北</h1>
 <table><tr><td width="80"> <a href="https://gitee.com/Tomnycui"><img id="i0" src="./Knock.png"></a> </td> <td style="word-break:break-all"> <i>阅读本文，你将得到： <bk/> 对<b>内存</b>、<b>指针</b>、<b>字符串</b>、<b>函数调用和参数传递</b>、<b>文件操作</b> 的深刻理解。</i> </td> </tr></table>
