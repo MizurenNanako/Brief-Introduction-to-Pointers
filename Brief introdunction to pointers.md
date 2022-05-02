@@ -55,7 +55,8 @@
 <tr><td><a href="#cp2"><img src="./Geminiadfucine.png"></a></td><td>第二节(上)：<br/>指针！指针！</td></tr>
 <tr><td><a href="#cp2s1"><img src="./Influenceknockg.png"></a></td><td>第二节(下)：<br/>指针：觉醒</td></tr>
 <tr><td><a href="#cp3"><img src="./Manualdeparturevak.png"></a></td><td>第三节：<br/>指针、数组、字符串</td></tr>
-<tr><td><a href="#cp4"><img src="./Consecrated_Lintel.webp"></a></td><td>第四节：<br/>地址的传递</td></tr>
+<tr><td><a href="#cp4"><img src="。/../Azoth.webp"></a></td><td>第四节：<br/>动态内存管理</td></tr>
+<tr><td><a href="#cp5"><img src="./Consecrated_Lintel.webp"></a></td><td>第五节：<br/>地址的传递</td></tr>
 </table>
 </td>
 <td>
@@ -224,11 +225,6 @@ short *p_short = &a;
 </details>
 
 <details>
-  <summary>知识扩充：「解除引用算符」</summary>
-  <blockquote><ruby>解除引用算符<rt>Dereference Operator</rt></ruby>实际上就是<ruby>间接访问算符<rt>Indirection Operator</rt></ruby>，这实际上是一个历史问题。国内对「解除引用」的翻译往往各有千秋，甚至违反直觉，阻碍理解<span class="heimu">（因为C++中「引用」有特殊含义）</span>，因此这里不采用这个名称。</blockquote>
-</details>
-
-<details>
   <summary>知识扩充：所以到底什么是引用？</summary>
   <blockquote>
   <font color="#71AEE2"><b>可是即便如此，我还是不知道「引用」是什么意思。</b></font><br/>
@@ -246,6 +242,11 @@ short *p_short = &a;
   <font color="#AC6E46"><b>额……这是历史问题，事实上，叫<span style="font-size: 0.6cm">「间接访问运算符」</span>更准确。</b></font><br/>
   <font color="#71AEE2"><b>原来如此……</b></font>
   </blockquote>
+</details>
+
+<details>
+  <summary>知识扩充：「解除引用算符」</summary>
+  <blockquote><ruby>解除引用算符<rt>Dereference Operator</rt></ruby>实际上就是<ruby>间接访问算符<rt>Indirection Operator</rt></ruby>，这实际上是一个历史问题。国内对「解除引用」的翻译往往各有千秋，甚至违反直觉，阻碍理解<span class="heimu">（因为C++中「引用」有特殊含义）</span>，因此这里不采用这个名称。</blockquote>
 </details>
 
 #### 总结：
@@ -344,13 +345,12 @@ int *needle = *(array[2]);
 实际上，一切皆有可能，包括系统崩溃。
 这是因为：内存是连续的，理论上合法的内存地址是 <code>0~2<sup>64</sup> - 1</code> ，因此只要是这个范围内的地址指向的 `byte`，都是可以访问的——唯一问题是这些 `byte` 是不是你能用的——例如别的程序（包括系统）的内存区域。<b>一旦动了你不该动的数据，很可能就是你的程序<font color="Orange" size="5">寄</font>或被你攻击的程序<font color="Orange" size="5">寄</font>。</b>
 
-<font color="#71AEE2"><b>不是，为什么我的程序会<font size="5">寄</font>？<font>¯\\\_(ツ)\_\/¯</font></b></font>
-<font color="#AC6E46"><b>因为如果你尝试动操作系统的内存，对面有（很大）几率先下手为强。（笑）</b></font>
-<font color="#71AEE2"><b>那我只用自己的内存就好了罢！ (┙>∧<)┙へ┻┻</b></font>
-
 但是也有一个好消息：万一崩系统了，重启就好了。
 
-然后这节就结束了。
+<font color="#71AEE2"><b>不是，为什么我的程序会<font size="5">寄</font>？<font>¯\\\_(ツ)\_\/¯</font></b></font>
+<font color="#AC6E46"><b>因为如果你尝试动操作系统的内存，对面有（很大）几率先下手为强。（笑）</b></font>
+<font color="#71AEE2"><b>那我的内存不够用怎么办？ (┙>∧<)┙へ┻┻</b></font>
+
 <details><summary>知识扩充：「慢着慢着，你还没讲字符串呢！」</summary><blockquote><s>出现在标题不代表会讲。</s><br/>字符串实际上是一种特殊的数组：
 
 1. 所有元素都是 `char`；
@@ -365,11 +365,70 @@ char str_a[] = {'H', 'e', 'l', 'l', 'o', '\0'};
 </blockquote></details>
 
 
-<h2 id="cp4"> 第四节：地址的传递 </h2>
+<h2 id="cp4"> 第四节：动态内存 </h2>
+<table><tr><td width="80"><a href="#h1"><img src="。/../Azoth.webp"></a> </td><td> <i>Perhaps it isn't the final solvent that the alchemists sought. But it will do, for our purposes.</i> </td></tr></table>
+
+在第二节的时候，我们曾经提到过一种**运行期产生**的、**没有名字**的变量：
+<blockquote>
+<font color="#71AEE2"><b>难道还有没有名字的变量吗？</b></font><br/>
+<font color="#AC6E46"><b>正是如此。</b></font><br/>
+有一些变量本身，确实存在于内存之中，但是没有名字——因为它们并不是在编译期产生的，而是在<b>运行期产生的</b>——因此不能通过名字被直接使用。<br/>
+</blockquote>
+
+<font color="#71AEE2"><b>我想起来了——可是这又有什么用呢？</b></font>
+<font color="#AC6E46"><b>这种动态获取的内存是很多数据结构<small><span class="heimu">（如：链表、树、图）</span></small>的重要实现方式，在这里我暂时不会深入讲解——但是总而言之，这大有用武之地。</b></font>
+<font color="#71AEE2"><b>听起来有点意思，怎样获取这种动态的内存呢？</b></font>
+
+操作系统是内存的管理者，所有内存理论上都是操作系统进行管理的——所以要获取一块内存，得向操作系统申请——这就要用到函数 `malloc`。
+它是这样用的：`malloc(<N>);`其中 `<N>` 是要申请的 `byte` 的数目。
+例如要申请`40`个`byte`：`malloc(40);`
+
+<font color="#71AEE2"><b>好极啦！现在我们拿到了40个byte的使用权——诶，等等，怎么用呢？<br/>让我想想……没有变量名，有地址吗？</b></font>
+<font color="#AC6E46"><b>有。</b></font>
+<font color="#71AEE2"><b>在哪？</b></font>
+<font color="#AC6E46"><b>刚刚丢了。</b></font>
+
+实际上 `malloc` 申请完内存之后会返回一个地址，指向被申请区域的第一个`byte`，而我们为了接下来的使用，必须用一个指针去承接这个地址值。
+考虑到`40`个`byte`可以看成是`10`个`int`，我们不妨用`int *`来承接这个地址。
+
+```cpp
+int *pointer; // 先整一个指针
+pointer = malloc(40); // 申请，并保存得到的地址。
+```
+现在这个 `pointer` 可以当数组用，下标范围是 `[0, 10)` 内的整数。
+也就是说 `pointer[0]`、`pointer[1]`、……、`pointer[9]` 都能用。
+当然，写成指针偏移的形式更清晰：
+`*pointer`、`*(pointer + 1)`、……、`*(pointer + 9)`
+
+> 所有标准库里面的函数描述区间的时候都是左闭右开区间。
+
+<font color="Gold"><b>[WARNING: ]</font> 接下来开始提及的内容请务必认真注意。</b>
+
+无论什么时候使用动态内存，即使用 `malloc` 开出了内存空间，**一定要记得释放**。
+
+释放的方法很简单：以刚刚开的内存空间为例，只需要知道那一整段空间的第一个`byte`的地址就可以完成释放——因为操作系统是用首地址来记录内存申请记录的。
+刚刚我们把开出来的内存的首地址放在了 `pointer` 里，因此现在要：
+
+```cpp
+free(pointer); // 归还（释放）内存。
+pointer = NULL; // 移开这个指针的指向。
+```
+
+这样就够了。
+
+<details><summary>知识拓展：「归还后置<code>NULL</code>」</summary><blockquote>
+因为<code>free</code>完之后，<code>pointer</code> 仍然指向原来的旧地址——一个已经失去所有权的地址——继续指向这个地址有误用的风险，这是要避免的。
+使用已归还的和使用不属于自己的内存是一个性质的。
+</blockquote></details>
+
+<h2 id="cp5"> 第五节：地址的传递 </h2>
 <table><tr><td width="80"><a href="#h1"><img src="./Consecrated_Lintel.webp"></a> </td><td> <i>This is the skull of a door through which power has passed.</i> </td></tr></table>
+
+
+
 未完待续
 
-## 第五节：指针的第二种形态
+## 第六节：指针的第二种形态
 
 未完待续
 
