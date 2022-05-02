@@ -629,7 +629,7 @@ A&#xA0;byte&#xA0;is the smallest addressable unit of memory. It is defined as a 
 <pre data-role="codeBlock" data-info="cpp" class="language-cpp"><span class="token comment">// 0 1 2 3 4 5 6 ......</span>
 <span class="token comment">// 1 9 1 9 8 1 0 ......</span>
 <span class="token comment">//     &#x2191;Here</span>
-<span class="token keyword keyword-int">int</span> <span class="token operator">*</span>needle <span class="token operator">=</span> <span class="token operator">*</span><span class="token punctuation">(</span>array<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-int">int</span> <span class="token operator">*</span>needle <span class="token operator">=</span> <span class="token operator">&amp;</span><span class="token punctuation">(</span>array<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </pre><p>&#x663E;&#x7136;&#x73B0;&#x5728; <code>*needle</code> &#x662F; <code>1</code>&#xFF0C;<br>
 &#x540C;&#x65F6;&#x6709;&#xFF1A;</p>
 <table>
