@@ -285,10 +285,11 @@ short *p_short = &a;
 
 > 指针出现的初衷是为了操作任意内存上的数据，因此，用尽量少的指针变量控制和管理尽量大的内存区域，就成为了一个必须解决的问题。
 > 不妨回顾一下内存模型：
+>  
 > 1. 字节是可访问的最小内存单位；
 > 2. 字节的地址具有唯一性；
 > 3. 字节的地址具有在整数集内的后继性；
-> 
+>  
 > 其中，条件 (1) 已用于推出变量的本质；条件 (2) 建立了从地址到变量的映射关系<small><span class="heimu">（「寻址」和「间接访问」）</span></small>，而条件 (3) 还没有被使用。
 
 从条件 (3) 我们可以推出：
@@ -358,12 +359,13 @@ int *needle = &(array[2]);
 <span class="heimu"><code class="heimu">'\0'</code> 是一个特殊字符，ascii值是 <code class="heimu">0</code>，又称0字符，用于标记字符串的结尾。</span>
 
 满足以上两条的数组才能叫字符串。例如数组：
+
 ```cpp
 char str_a[] = {'H', 'e', 'l', 'l', 'o', '\0'};
 ```
+
 等价于 `char str_b[] = "Hello";`
 </blockquote></details>
-
 
 <h2 id="cp4"> 第四节：动态内存 </h2>
 <table><tr><td width="80"><a href="#h1"><img src="。/../Azoth.webp"></a> </td><td> <i>Perhaps it isn't the final solvent that the alchemists sought. But it will do, for our purposes.</i> </td></tr></table>
@@ -395,6 +397,7 @@ char str_a[] = {'H', 'e', 'l', 'l', 'o', '\0'};
 int *pointer; // 先整一个指针
 pointer = malloc(40); // 申请，并保存得到的地址。
 ```
+
 现在这个 `pointer` 可以当数组用，下标范围是 `[0, 10)` 内的整数。
 也就是说 `pointer[0]`、`pointer[1]`、……、`pointer[9]` 都能用。
 当然，写成指针偏移的形式更清晰：
@@ -424,7 +427,14 @@ pointer = NULL; // 移开这个指针的指向。
 <h2 id="cp5"> 第五节：地址的传递 </h2>
 <table><tr><td width="80"><a href="#h1"><img src="./Consecrated_Lintel.webp"></a> </td><td> <i>This is the skull of a door through which power has passed.</i> </td></tr></table>
 
+<font color="DarkGreen"><b>[ATTENTION: ]</font> 本节内容将成为重要技巧。</b>
 
+在开始阐述本节内容之前，我们需要先回顾一下函数传参的机制。
+
+<details><summary>知识拓展：「函数传参机制」</summary><blockquote>
+在有参数的函数被调用的时候，往往需要考虑传参。
+例如对于函数 <code>z = f(x, y);</code>，其中 `z` 是返回值，`x` `y` 是本地的变量。
+</blockquote></details>
 
 未完待续
 
