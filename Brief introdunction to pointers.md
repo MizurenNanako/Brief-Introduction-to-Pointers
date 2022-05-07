@@ -55,12 +55,12 @@
 <tr><td><a href="#cp2"><img src="./Geminiadfucine.png"></a></td><td>第二节(上)：<br/>指针！指针！</td></tr>
 <tr><td><a href="#cp2s1"><img src="./Influenceknockg.png"></a></td><td>第二节(下)：<br/>指针：觉醒</td></tr>
 <tr><td><a href="#cp3"><img src="./Manualdeparturevak.png"></a></td><td>第三节：<br/>指针、数组、字符串</td></tr>
-<tr><td><a href="#cp4"><img src="。/../Azoth.webp"></a></td><td>第四节：<br/>动态内存管理</td></tr>
-<tr><td><a href="#cp5"><img src="./Consecrated_Lintel.webp"></a></td><td>第五节：<br/>地址的传递</td></tr>
+<tr><td><a href="#cp4"><img src="。/../Azoth.png"></a></td><td>第四节：<br/>动态内存管理</td></tr>
+<tr><td><a href="#cp5"><img src="./Consecrated_Lintel.png"></a></td><td>第五节：<br/>地址的传递</td></tr>
 </table>
 </td>
 <td>
-<img src="./The_Wreck_of_the_Christabel.webp">
+<img src="./The_Wreck_of_the_Christabel.png">
 <br/>
 <blockquote><p>June the 28th, once again.</p></blockquote>
 </td>
@@ -368,7 +368,7 @@ char str_a[] = {'H', 'e', 'l', 'l', 'o', '\0'};
 </blockquote></details>
 
 <h2 id="cp4"> 第四节：动态内存 </h2>
-<table><tr><td width="80"><a href="#h1"><img src="。/../Azoth.webp"></a> </td><td> <i>Perhaps it isn't the final solvent that the alchemists sought. But it will do, for our purposes.</i> </td></tr></table>
+<table><tr><td width="80"><a href="#h1"><img src="。/../Azoth.png"></a> </td><td> <i>Perhaps it isn't the final solvent that the alchemists sought. But it will do, for our purposes.</i> </td></tr></table>
 
 在第二节的时候，我们曾经提到过一种**运行期产生**的、**没有名字**的变量：
 <blockquote>
@@ -425,7 +425,7 @@ pointer = NULL; // 移开这个指针的指向。
 </blockquote></details>
 
 <h2 id="cp5"> 第五节：地址的传递 </h2>
-<table><tr><td width="80"><a href="#h1"><img src="./Consecrated_Lintel.webp"></a> </td><td> <i>This is the skull of a door through which power has passed.</i> </td></tr></table>
+<table><tr><td width="80"><a href="#h1"><img src="./Consecrated_Lintel.png"></a> </td><td> <i>This is the skull of a door through which power has passed.</i> </td></tr></table>
 
 <font color="DarkGreen"><b>[ATTENTION: ]</font> 本节内容将成为重要技巧。</b>
 
