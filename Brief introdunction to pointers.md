@@ -38,7 +38,7 @@
 <body>
 <div style="width: 100%; min-width: 450px; max-width:800px">
 
-> ref ver 5.1
+> ref ver 5.3
 
 <h1 id="h1">C语言指针指北</h1>
 <table><tr><td width="80"> <a href="https://gitee.com/Tomnycui"><img id="i0" src="./Knock.png"></a> </td> <td style="word-break:break-all"> <i>阅读本文，你将得到： <bk/> 对<b>内存</b>、<b>指针</b>、<b>字符串</b>、<b>函数调用和参数传递</b>、<b>文件操作</b> 的深刻理解。</i> </td> </tr></table>
@@ -57,12 +57,13 @@
 <tr><td><a href="#cp3"><img src="./Manualdeparturevak.png"></a></td><td>第三节：<br/>指针、数组、字符串</td></tr>
 <tr><td><a href="#cp4"><img src="。/../Azoth.png"></a></td><td>第四节：<br/>动态内存管理</td></tr>
 <tr><td><a href="#cp5"><img src="./Consecrated_Lintel.png"></a></td><td>第五节：<br/>地址的传递</td></tr>
+<tr><td><a href="#cp6"><img src="Frangiclave.png"></a></td><td>第六节：<br/>指针的第二种形态</td></tr>
 </table>
 </td>
 <td>
-<img src="./The_Wreck_of_the_Christabel.png">
+<img src="./The_Unnumbered_Stones4x.png">
 <br/>
-<blockquote><p>June the 28th, once again.</p></blockquote>
+<blockquote><p>Each hour has its colour. Each flame has its fuel. Dream furiously.</p></blockquote>
 </td>
 </table>
 
@@ -464,7 +465,10 @@ int c = f(x, y);
 **形式参数是一个独立的变量，和外部赋予它值的变量毫不相关**，任何对于形式参数的改动都不会对外部产生分毫的影响——这就是数学意义上的函数——除了计算之外没有副作用的函数。
 
 这很好——除非你的函数的实现依赖于这种副作用。
+
 例如，考虑函数，用于交换两个变量的值：
+
+<details><summary><code>swap()</code> 的无效实现</summary>
 
 ```c
 void swap(int a, int b)
@@ -472,6 +476,8 @@ void swap(int a, int b)
     int c = a; a = b; b = c;
 }
 ```
+
+</details><br/>
 
 但是这种作用无法传递到外面去，例如，使用 `swap(x, y);`，`x`、`y` 的值不会受到丝毫的影响。
 
@@ -486,12 +492,16 @@ void swap(int a, int b)
 
 刚刚的代码可以实现成这样：
 
+<details><summary><code>swap()</code> 的指针实现</summary>
+
 ```c
 void swap(int *p_a, int *p_b)
 {
     int c = *p_a; *p_a = *p_b; *p_b = c;
 }
 ```
+
+</details><br/>
 
 使用 `swap(&x, &y);` 来完成交换。
 
@@ -514,9 +524,38 @@ void swap(int *p_a, int *p_b)
 
 对于某些特殊的数组，如果已知用固定的元素作为结尾，例如 `0`，并且保证此元素在整个数组中必定存在且出现在结尾，那么就不需要额外传递数组长度——因为数组长度可以由数据本身给出——这类数组的典型例子就是字符串。<span class="heimu"><s>忘了就翻前面的知识扩充。</s></span>
 
-未完待续
+<details><summary>例子：获取字符串的长度</summary>
 
-## 第六节：指针的第二种形态
+```c
+long long int get_length(char *str)
+{
+    int r = 0;
+    while (str[r])
+        ++r;
+    return r;
+}
+```
+
+</details><br/>
+
+<details><summary>知识扩充：引用的直接使用</summary>
+<blockquote>在点开下面的代码实现前请三思：你到底对计算机有没有兴趣？<br/><b>我是说，<ruby>计算机科学<rt>Computer Science</rt></ruby></b>。<br/>这是一种很简便的写法，但是背后的原理大有不同，将涉及到一个新的领域。<div align="right">——在敲开新世界的大门之前，这是最后的忠告。</div>
+<details><summary><code>swap()</code> 的引用实现（<b>仅限C++</b>）</summary>
+
+```c
+void swap(int &ref_a, int &ref_b)
+{
+    int c = ref_a; ref_a = ref_b; ref_b = c;
+}
+```
+
+篇幅有限，不再解释这段代码，以及<ruby>「引用」<rt>Reference</rt></ruby>有关的所有知识。
+</details>
+</blockquote>
+</details>
+
+<h2 id="cp6"> 第六节：指针的第二种形态 </h2>
+<table><tr><td width="80"><a href="#h1"><img src="Frangiclave.png"></a> </td><td> <i>There are keys that open doors; then there are keys that destroy them. --It cannot be locked away. Keep it in the hand or beneath the tongue.</i> </td></tr></table>
 
 未完待续
 
