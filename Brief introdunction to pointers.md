@@ -557,7 +557,24 @@ void swap(int &ref_a, int &ref_b)
 <h2 id="cp6"> 第六节：指针的第二种形态 </h2>
 <table><tr><td width="80"><a href="#h1"><img src="Frangiclave.png"></a> </td><td> <i>There are keys that open doors; then there are keys that destroy them. --It cannot be locked away. Keep it in the hand or beneath the tongue.</i> </td></tr></table>
 
-未完待续
+<font color="#71AEE2"><b>既然指针可以指向变量——也就是储存变量的地址——它是否可以储存别的地址呢？</b></font>
+<font color="#AC6E46"><b>这实际上是完全可以的。</b></font>
+
+*在开始讲述本章内容之前，我们不妨了解一些程序运行的简单知识。*
+
+<details><summary>知识扩充：程序运行的地点</summary>
+显然而且毫无疑问地，所有程序运行时，都需要把自己的机器码<small><span class="heimu">也就是二进制指令</span></small>载入内存——这包括所有操作数据的代码，也就是我们通常意义上所说的函数。
+也就是说，一旦程序开始运行，它的有关文件就会从硬盘上被读入到内存中去，产生一个程序实体——实际被执行的是这个实体——一个完全在内存上的实体。
+换而言之，在程序运行的时候完全可以获取任何自己的组件——包括所有函数——的地址。
+</details>
+
+<h3 id="cp6p1">函数指针及其类型</h3>
+
+未完待续。
+
+<h3 id="cp6p2"><ruby>句柄<rt>Handle</rt></ruby>：广义指针</h3>
+
+未完待续。
 
 </div>
 </body>
