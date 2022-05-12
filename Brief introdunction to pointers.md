@@ -38,7 +38,7 @@
 <body>
 <div style="width: 100%; min-width: 450px; max-width:800px">
 
-> ref ver 6.2
+> ref ver 6.5
 
 <h1 id="h1">C语言指针指北</h1>
 <table><tr><td width="80"> <a href="https://gitee.com/Tomnycui"><img id="i0" src="./Knock.png"></a> </td> <td style="word-break:break-all"> <i>阅读本文，你将得到： <bk/> 对<b>内存</b>、<b>指针</b>、<b>字符串</b>、<b>函数调用和参数传递</b>、<b>文件操作</b> 的深刻理解。</i> </td> </tr></table>
@@ -58,7 +58,7 @@
 <tr><td><a href="#cp4"><img src="。/../Azoth.png"></a></td><td>第四节：<br/>动态内存管理</td></tr>
 <tr><td><a href="#cp5"><img src="./Consecrated_Lintel.png"></a></td><td>第五节：<br/>地址的传递</td></tr>
 <tr><td><a href="#cp6"><img src="./Frangiclave.png"></a></td><td>第六节：<br/>函数指针与高阶函数初步</td></tr>
-<tr><td><a href="#cp7"><img src="./Encirclingtantrasanskrit.png"></a></td><td>第七节：<br/>句柄：广义指针</td></tr>
+<tr><td><a href="#cp7"><img src="./Encirclingtantrasanskrit.png"></a></td><td>第七节：<br/>句柄与广义指针</td></tr>
 </table>
 </td>
 <td>
@@ -567,29 +567,37 @@ void swap(int &ref_a, int &ref_b)
 显然而且毫无疑问地，所有程序运行时，都需要把自己的机器码<small><span class="heimu">也就是二进制指令</span></small>载入内存——这包括所有操作数据的代码，也就是我们通常意义上所说的函数。
 也就是说，一旦程序开始运行，它的有关文件就会从硬盘上被读入到内存中去，产生一个程序实体——实际被执行的是这个实体——一个完全在内存上的实体。
 换而言之，在程序运行的时候完全可以获取任何自己的组件——包括所有函数——的地址。
-</blockquote></details>
+</blockquote></details><br/>
 
+> 本章主要讨论的问题是：如何用一种类似于获取变量地址和利用地址使用变量的方法，来获取函数的地址以及利用必要的信息来使用指定地址的函数。
+> 很显然，结合标题，读者可以猜出本章讲述的是函数指针——一种用于储存函数地址和一定的信息的变量。
 > 一般来说，函数指针在 `C++` 中有至少两种，但是在 `C` 中只有一种。由于这里主要介绍 `C`，因此默认函数指针只有一种：普通函数指针。
 
-函数指针的概念和普通指针几乎一致，因此我们先复习一个函数的构成部分。<small><span class="heimu">（注：也就是要正确的调用一个函数需要多少信息。）</span></small>
+函数指针的概念和普通指针几乎一致，因此我们将使用类似的方式引出函数指针的概念。
+首先，我们先复习一个函数的构成部分。<small><span class="heimu">（注：也就是要正确的调用一个函数需要多少信息。）</span></small>
+
+**函数的构成三要素：**
 
 1. 函数的唯一标识符
 2. 函数的调用方式
 3. 函数的返回值
 
-<details><summary>详细解释</summary><blockquote>
-首先是函数的返回值——这决定了函数返回值的类型，因此是一个重要的信息——就和变量的类型一样；<br/>
-其次是函数的调用方式——也就是函数的参数列表，决定了这个函数会用什么参数进行调用。这很好理解。<br/>
-<font color="#71AEE2"><b>但是“函数的唯一标识符”又是什么？</b></font><br/>
-<font color="#AC6E46"><b>这其实是一个很常见的概念，在<code>C</code> 里面，它就是函数的名称。因此 <code>C</code> 中的函数是不能重名的——以确保函数具有唯一的标识。</font><br/>
-唯一的标识+返回值，这就是调用函数和处理函数返回值所需要的所有信息。<small><span class="heimu">但是在 <code class="heimu">C++</code> 中允许函数重载，因为 <code class="heimu">C++</code> 有一套<ruby>名称粉碎<rt class="heimu">Name Mangling</rt></ruby>机制。</span></small></b>
+<details><summary>详细解释：以上三要素的意义</summary><blockquote>
+
+**首先是函数的返回值**，这决定了函数返回值的类型，因此是一个和变量的类型一样重要的信息。
+**其次是函数的调用方式**，也就是函数的参数列表，决定了这个函数会用什么参数进行调用。这很好理解。<br/>
+<font color="#71AEE2"><b>但是“函数的唯一标识符”又是什么？</b></font>
+<font color="#AC6E46"><b>这其实是一个很常见的概念，在<code>C</code> 里面，它就是函数的<font size="5">名称</font>。因此 <code>C</code> 中的函数是不能重名的——以确保函数具有唯一的标识。</b></font><br/>
+**唯一的标识+返回值，这就是调用函数和处理函数返回值所需要的所有信息。**<small><span class="heimu">但是在 <code class="heimu">C++</code> 中允许函数重载，因为 <code class="heimu">C++</code> 有一套<ruby>名称粉碎<rt class="heimu">Name Mangling</rt></ruby>机制。</span></small>
 </blockquote></details><br/>
 
-显然，当我们使用函数指针的时候，也应该还原这两种信息。
+显然，当我们使用函数指针的时候，也应该还原这三种信息。
 
-首先是函数的唯一标识符——储存函数的地址就可以解决；其次是函数的调用方式（参数列表）和返回值——`C` 采用的是和变量类似的处理方式——一并写在函数指针的“类型”里面。
+首先是函数的唯一标识符——储存函数的地址就可以解决<small><span="heimu">唯一标识符不仅有函数名，还有地址。</span></small>；其次是函数的调用方式（参数列表）和返回值——`C` 采用的是和变量类似的处理方式——一并写在函数指针的“类型”里面。
 
-<details><summary>例子：写一个函数指针</summary><blockquote>
+由于概念相对于介绍普通指针时较少，而较难，本章采用直接给例子的方式进行讲解。
+
+<h3>例子：写一个函数指针</h3>
 
 对于如下函数声明：
 
@@ -627,21 +635,36 @@ p_f(1.0, 1, 1.0f, "Hello"); // 函数指针，不需要 *
 
 实际上，函数指针的“类型”就是 `<return_type>(<param_list>)`，这里面已经包含了参数列表和返回值的信息。
 
-</blockquote></details><br/>
-
 <font color="#71AEE2"><b>但是函数指针又有什么用呢？</b></font>
 <font color="#AC6E46"><b>其中一种用法是用于实现某些同构的算法——例如累加、累乘等。因此对于这个问题，我更乐意直接给出一个例子。</b></font>
 
-<details><summary>例子：累积操作</summary><blockquote>
+<h3>例子：累积操作</h3>
+
 考虑一类问题：一列连续的被操作数上进行累积的二元可交换操作，例如：累加、累乘等。
 考虑到这些操作都具有可交换性，<small><span class="heimu">（例如 <code class="heimu">a+b==b+a</code>）</span></small>我们可以通过递归大幅降低操作次数。<small><span class="heimu">（从 <code class="heimu">O(n)</code> 到 <code class="heimu">O(log n)</code>）</span></small>
 对此类问题总结出如下递归公式：
 
-- 设 `S(a, b)` 为数组 `A[n]` 在 `[a, b)` 区间内的广义和，其中 `b ≤ n`，
+- 设 `S(a, b)` 为数组 `A[n]` 在 `[a, b)` 区间内的整体操作结果，其中 `b ≤ n`，
   我们有：
   1. `S(a, b) = F(S(a, k), S(k, b))`，
         其中 `k ∈ [a, b)`；`F(x, y)` 是一个二元可交换操作，例如加、乘等。
   2. `S(a, a) = A[a]`
+
+<details><summary>一个具体的例子</summary><blockquote>
+<s>我感觉不举实例这里不好理解</s>
+
+考虑操作为加法操作，即整体操作结果为区间累加。
+以 `F(x, y) = x + y` 代入，我们可以获得具体例子：
+
+- 设 `S(a, b)` 为数组 `A[n]` 在 `[a, b)` 区间内的整体操作结果，其中 `b ≤ n`，
+  我们有：
+  1. `S(a, b) = S(a, k) + S(k, b)`，
+        其中 `k ∈ [a, b)`；
+  2. `S(a, a) = A[a]`
+
+这是上面看起来比较抽象的递归公式用加法代入后得到的一个例子。同理，由于操作结构是一致的，我们可以用乘法、*与*、*或* 等代入来得到累乘、累与、累或的例子。
+
+</blockquote></details><br/>
 
 `C` 代码实现：
 
@@ -678,18 +701,86 @@ int prod = accumulate(A, a, b, mul);
 int xor_sum = accumulate(A, a, b, xor);
 ```
 
-这样的高阶函数有很多，包括 `C++ STL` 中 `algorithm` 的 `std::sort` 函数。高阶函数可以让算法结构和操作本身分离，从而实现代码的复用。
+这样的高阶函数有很多，包括 `C++ STL` 中 `algorithm` 的 `std::sort` 函数。高阶函数可以让算法结构和操作本身分离，从而实现代码的复用。<br/>
+
+<details><summary>知识扩充：高阶函数</summary><blockquote>
+<blockquote>
+<h5>Higher-order function</h5>
+In mathematics and computer science, a higher-order function is a function that does at least one of the following:
+
+- takes one or more functions as arguments (i.e. a procedural parameter, which is a parameter of a procedure that is itself a procedure),
+- returns a function as its result.
+
+All other functions are first-order functions. In mathematics higher-order functions are also termed operators or functionals. The differential operator in calculus is a common example, since it maps a function to its derivative, also a function.
+<div align="right"><small>From Wikipedia, the free encyclopedia</small></div>
+</blockquote>
+<strong>机翻：</strong><br/>
+在数学和计算机科学中，高阶函数是至少执行以下一项的函数：
+
+- 将一个或多个函数作为参数（即过程参数，它是过程的参数，本身就是一个过程），
+- 返回一个函数作为其结果。
+
+所有其他函数都是一阶函数。在数学中，高阶函数也被称为算子或泛函。微积分中的微分算子就是一个常见的例子，因为它将函数映射到它的导数，也是一个函数。
 </blockquote></details>
 
-<font color="#71AEE2"><b>使用高阶函数实现同构的算法——可是作为一个新手我根本不会写啊！！！</b></font>
-<font color="#AC6E46"><b>但是这就是函数指针最有意义的用法了——这不但是极具理论价值的<small><a href="https://plato.stanford.edu/entries/lambda-calculus/">(Lambda Calculus)</a></small>，也是极具工程价值的<small><a href="https://www.geeksforgeeks.org/callbacks-in-c/#:~:text=A%20callback%20is%20any%20executable%20code%20that%20is,it%20will%20be%20called%20as%20a%20Callback%20function.">(Callback Functions and Internet)</a></small>。</b></font>
+<details><summary>知识扩充：STL 中的 <code>std::sort</code></summary><blockquote>
+<table>
+<tr><td>
+<table>
+  <tr><td colspan="2"><strong>基本信息</strong></td></tr>
+  <tr>
+    <td>适用语言</td><td>仅 <code>C++</code></td>
+  </tr>
+  <tr>
+    <td>所在头文件</td><td><code>algorithm</code></td>
+  </tr>
+  <tr>
+    <td>所在 namespace</td><td><code>std</code></td>
+  </tr>
+  <tr>
+    <td>全名</td><td><code>std::sort</code></td>
+  </tr>
+  <tr>
+    <td>所在头文件</td><td><code>algorithm</code></td>
+  </tr>
+  <tr>
+    <td colspan="2"><div align="center"><strong>实例见右→</strong></div></td>
+  </tr>
+</table>
+</td><td>
+
+```cpp
+#include <algorithm>
+#include <iostream>
+#include <vector>
+
+std::vector<double> vec{-3.4, 2.3, -6.0, 2.0, 32.1, -0.123};
+bool greater(double x, double y){return x > y};
+
+int main()
+{
+    // Before sort: -3.4, 2.3, -6.0, 2.0, 32.1, -0.123
+    for (auto x : vec){std::cout << x << " ";}
+    std::sort(vec.begin(), vec.end(), greater);
+    // After sort: 32.1, 2.3, 2.0, -0.123, -3.4, -6.0
+    for (auto x : vec){std::cout << x << " ";}
+    return 0;
+}
+```
+
+</td></tr>
+</table>
+</blockquote></details><br/>
+
+<font color="#71AEE2"><b>使用高阶函数实现同构的算法这确实是很有意义的用法——可是作为一个新手我根本不会写啊！！！</b></font>
+<font color="#AC6E46"><b>这就是函数指针最有意义的用法了——这不但是极具理论价值的<small><a href="https://plato.stanford.edu/entries/lambda-calculus/">(Lambda Calculus)</a></small>，也是极具工程价值的<small><a href="https://www.geeksforgeeks.org/callbacks-in-c/#:~:text=A%20callback%20is%20any%20executable%20code%20that%20is,it%20will%20be%20called%20as%20a%20Callback%20function.">(Callback Functions and Internet)</a></small>。事实上，作为新手写不出来是很正常的——但是稍微接触一下对于使用别人写好的东西总是有帮助的。</b></font>
 
 当然，这节的内容不能理解完全是无关紧要的——如果不是对计算机感兴趣的话。
 事实上，即使是学习计算机有关专业的学生，这节的理解也是无关紧要的——总有一天你会在实践中理解这一切。
 <span class="heimu">（如果是数学专业或者计算机专业的学生，先了解 Lambda Calculus 会对理解本节有帮助。）</span>
 
-<h2 id="cp7">第七节：<ruby>句柄<rt>Handle</rt></ruby>：广义指针</h2>
-<table><tr><td width="80"><a href="#h1"><img src="./Encirclingtantrasanskrit.png"></a> </td><td> <i>Rose is a rose is a rose.</i> </td></tr></table>
+<h2 id="cp7">第七节：<ruby>句柄<rt>Handle</rt></ruby>与广义指针</h2>
+<table><tr><td width="80"><a href="#h1"><img src="./Encirclingtantrasanskrit.png"></a> </td><td> <i>Rose is a rose is a rose. Loveliness extreme. Extra gaiters, Loveliness extreme. Sweetest ice-cream. Pages ages page ages page ages.</i> </td></tr></table>
 
 未完待续。
 
