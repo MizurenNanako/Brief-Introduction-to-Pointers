@@ -562,15 +562,49 @@ void swap(int &ref_a, int &ref_b)
 
 *在开始讲述本章内容之前，我们不妨了解一些程序运行的简单知识。*
 
-<details><summary>知识扩充：程序运行的地点</summary>
+<details><summary>知识扩充：程序运行的地点</summary><blockquote>
 显然而且毫无疑问地，所有程序运行时，都需要把自己的机器码<small><span class="heimu">也就是二进制指令</span></small>载入内存——这包括所有操作数据的代码，也就是我们通常意义上所说的函数。
 也就是说，一旦程序开始运行，它的有关文件就会从硬盘上被读入到内存中去，产生一个程序实体——实际被执行的是这个实体——一个完全在内存上的实体。
 换而言之，在程序运行的时候完全可以获取任何自己的组件——包括所有函数——的地址。
-</details>
+</blockquote></details>
 
 <h3 id="cp6p1">函数指针及其类型</h3>
 
-未完待续。
+> 一般来说，函数指针在 `C++` 中有至少两种，但是在 `C` 中只有一种。由于这里主要介绍 `C`，因此默认函数指针只有一种：普通函数指针。
+
+函数指针的概念和普通指针几乎一致，因此我们先复习一个函数的构成部分。<small><span class="heimu">（注：也就是要正确的调用一个函数需要多少信息。）</span></small>
+
+1. 函数的唯一标识符
+2. 函数的调用方式
+3. 函数的返回值
+
+<details><summary>详细解释</summary><blockquote>
+首先是函数的返回值——这决定了函数返回值的类型，因此是一个重要的信息——就和变量的类型一样；<br/>
+其实是函数的调用方式——也就是函数的参数列表，决定了这个函数会用什么参数进行调用。这很好理解。<br/>
+<font color="#71AEE2"><b>但是“函数的唯一标识符”又是什么？</b></font><br/>
+<font color="#AC6E46"><b>这其实是一个很常见的概念，在<code>C</code> 里面，它就是函数的名称。因此 <code>C</code> 中的函数是不能重名的——以确保函数具有唯一的标识。</font><br/>
+唯一的标识+返回值，这就是调用函数和处理函数返回值所需要的所有信息。<small><span class="heimu">但是在 <code>C++</code> 中允许函数重载，因为 <code>C++</code> 有一套<ruby>名称粉碎<rt class="heimu">Name Mangling</rt></ruby>机制。</span></small></b>
+</blockquote></details>
+
+显然，当我们使用函数指针的时候，也应该还原这两种信息。
+
+首先是函数的唯一标识符——储存函数的地址就可以解决；其次是函数的调用方式（参数列表）和返回值——`C` 采用的是和变量类似的处理方式——一并写在函数指针的“类型”里面。
+
+<details><summary>例子：写一个函数指针</summary><blockquote>
+
+```c
+// 对于如下函数声明：
+int func(double, int, float, char *);
+// 对应的函数指针声明是：
+int (*p_f)(double, int, float, char *);
+// 赋值方式是：
+p_f = func; 			// 不需要 &
+// 调用函数指针指向的函数的方式是：
+func(1.0, 1, 1.0f, "Hello");		// 普通函数
+p_f(1.0, 1, 1.0f, "Hello");				// 函数指针，不需要 *
+```
+
+</blockquote></details>
 
 <h3 id="cp6p2"><ruby>句柄<rt>Handle</rt></ruby>：广义指针</h3>
 
