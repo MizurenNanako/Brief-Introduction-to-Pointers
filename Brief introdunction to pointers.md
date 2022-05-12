@@ -38,14 +38,14 @@
 <body>
 <div style="width: 100%; min-width: 450px; max-width:800px">
 
-> ref ver 5.3
+> ref ver 6.2
 
 <h1 id="h1">C语言指针指北</h1>
 <table><tr><td width="80"> <a href="https://gitee.com/Tomnycui"><img id="i0" src="./Knock.png"></a> </td> <td style="word-break:break-all"> <i>阅读本文，你将得到： <bk/> 对<b>内存</b>、<b>指针</b>、<b>字符串</b>、<b>函数调用和参数传递</b>、<b>文件操作</b> 的深刻理解。</i> </td> </tr></table>
 
 <table style="max-width:800px">
 <tr>
-<td width="260">
+<td width="300">
 <table>
 <tr>
     <td colspan="2"><b><div align="center">C语言指针指北：目录</div></b></td>
@@ -57,7 +57,8 @@
 <tr><td><a href="#cp3"><img src="./Manualdeparturevak.png"></a></td><td>第三节：<br/>指针、数组、字符串</td></tr>
 <tr><td><a href="#cp4"><img src="。/../Azoth.png"></a></td><td>第四节：<br/>动态内存管理</td></tr>
 <tr><td><a href="#cp5"><img src="./Consecrated_Lintel.png"></a></td><td>第五节：<br/>地址的传递</td></tr>
-<tr><td><a href="#cp6"><img src="Frangiclave.png"></a></td><td>第六节：<br/>指针的第二种形态</td></tr>
+<tr><td><a href="#cp6"><img src="./Frangiclave.png"></a></td><td>第六节：<br/>函数指针与高阶函数初步</td></tr>
+<tr><td><a href="#cp7"><img src="./Encirclingtantrasanskrit.png"></a></td><td>第七节：<br/>句柄：广义指针</td></tr>
 </table>
 </td>
 <td>
@@ -554,8 +555,8 @@ void swap(int &ref_a, int &ref_b)
 </blockquote>
 </details>
 
-<h2 id="cp6"> 第六节：指针的第二种形态 </h2>
-<table><tr><td width="80"><a href="#h1"><img src="Frangiclave.png"></a> </td><td> <i>There are keys that open doors; then there are keys that destroy them. --It cannot be locked away. Keep it in the hand or beneath the tongue.</i> </td></tr></table>
+<h2 id="cp6"> 第六节：函数指针与高阶函数初步 </h2>
+<table><tr><td width="80"><a href="#h1"><img src="./Frangiclave.png"></a> </td><td> <i>There are keys that open doors; then there are keys that destroy them. --It cannot be locked away. Keep it in the hand or beneath the tongue.</i> </td></tr></table>
 
 <font color="#71AEE2"><b>既然指针可以指向变量——也就是储存变量的地址——它是否可以储存别的地址呢？</b></font>
 <font color="#AC6E46"><b>这实际上是完全可以的。</b></font>
@@ -568,8 +569,6 @@ void swap(int &ref_a, int &ref_b)
 换而言之，在程序运行的时候完全可以获取任何自己的组件——包括所有函数——的地址。
 </blockquote></details>
 
-<h3 id="cp6p1">函数指针及其类型</h3>
-
 > 一般来说，函数指针在 `C++` 中有至少两种，但是在 `C` 中只有一种。由于这里主要介绍 `C`，因此默认函数指针只有一种：普通函数指针。
 
 函数指针的概念和普通指针几乎一致，因此我们先复习一个函数的构成部分。<small><span class="heimu">（注：也就是要正确的调用一个函数需要多少信息。）</span></small>
@@ -580,11 +579,11 @@ void swap(int &ref_a, int &ref_b)
 
 <details><summary>详细解释</summary><blockquote>
 首先是函数的返回值——这决定了函数返回值的类型，因此是一个重要的信息——就和变量的类型一样；<br/>
-其实是函数的调用方式——也就是函数的参数列表，决定了这个函数会用什么参数进行调用。这很好理解。<br/>
+其次是函数的调用方式——也就是函数的参数列表，决定了这个函数会用什么参数进行调用。这很好理解。<br/>
 <font color="#71AEE2"><b>但是“函数的唯一标识符”又是什么？</b></font><br/>
 <font color="#AC6E46"><b>这其实是一个很常见的概念，在<code>C</code> 里面，它就是函数的名称。因此 <code>C</code> 中的函数是不能重名的——以确保函数具有唯一的标识。</font><br/>
-唯一的标识+返回值，这就是调用函数和处理函数返回值所需要的所有信息。<small><span class="heimu">但是在 <code>C++</code> 中允许函数重载，因为 <code>C++</code> 有一套<ruby>名称粉碎<rt class="heimu">Name Mangling</rt></ruby>机制。</span></small></b>
-</blockquote></details>
+唯一的标识+返回值，这就是调用函数和处理函数返回值所需要的所有信息。<small><span class="heimu">但是在 <code class="heimu">C++</code> 中允许函数重载，因为 <code class="heimu">C++</code> 有一套<ruby>名称粉碎<rt class="heimu">Name Mangling</rt></ruby>机制。</span></small></b>
+</blockquote></details><br/>
 
 显然，当我们使用函数指针的时候，也应该还原这两种信息。
 
@@ -592,21 +591,105 @@ void swap(int &ref_a, int &ref_b)
 
 <details><summary>例子：写一个函数指针</summary><blockquote>
 
+对于如下函数声明：
+
 ```c
-// 对于如下函数声明：
 int func(double, int, float, char *);
-// 对应的函数指针声明是：
-int (*p_f)(double, int, float, char *);
-// 赋值方式是：
-p_f = func; 			// 不需要 &
-// 调用函数指针指向的函数的方式是：
-func(1.0, 1, 1.0f, "Hello");		// 普通函数
-p_f(1.0, 1, 1.0f, "Hello");				// 函数指针，不需要 *
 ```
 
+对应的函数指针声明是：
+
+```c
+int (*p_f)(double, int, float, char *);
+```
+
+赋值方式是：
+
+```c
+p_f = func; // 不需要 &
+```
+
+调用函数指针指向的函数的方式是：
+
+```c
+func(1.0, 1, 1.0f, "Hello"); // 普通函数
+p_f(1.0, 1, 1.0f, "Hello"); // 函数指针，不需要 *
+```
+
+注意到函数指针的声明方式和函数的声明方式基本上保持了一致，<br/>只是将原来 `函数名` 的部分替换成了 `(*指针名)`，所以总结一下可以得出通式：
+
+```c
+// 对于函数声明
+<return_type> <func_name>(<param_list>);
+// 对应的函数指针是
+<return_type> (*<pointer_name>)(<param_list>);
+```
+
+实际上，函数指针的“类型”就是 `<return_type>(<param_list>)`，这里面已经包含了参数列表和返回值的信息。
+
+</blockquote></details><br/>
+
+<font color="#71AEE2"><b>但是函数指针又有什么用呢？</b></font>
+<font color="#AC6E46"><b>其中一种用法是用于实现某些同构的算法——例如累加、累乘等。因此对于这个问题，我更乐意直接给出一个例子。</b></font>
+
+<details><summary>例子：累积操作</summary><blockquote>
+考虑一类问题：一列连续的被操作数上进行累积的二元可交换操作，例如：累加、累乘等。
+考虑到这些操作都具有可交换性，<small><span class="heimu">（例如 <code class="heimu">a+b==b+a</code>）</span></small>我们可以通过递归大幅降低操作次数。<small><span class="heimu">（从 <code class="heimu">O(n)</code> 到 <code class="heimu">O(log n)</code>）</span></small>
+对此类问题总结出如下递归公式：
+
+- 设 `S(a, b)` 为数组 `A[n]` 在 `[a, b)` 区间内的广义和，其中 `b ≤ n`，
+  我们有：
+  1. `S(a, b) = F(S(a, k), S(k, b))`，
+        其中 `k ∈ [a, b)`；`F(x, y)` 是一个二元可交换操作，例如加、乘等。
+  2. `S(a, a) = A[a]`
+
+`C` 代码实现：
+
+```c
+typedef int(*binary_op)(int, int);
+
+int accumulate(int A[], int a, int b, binary_op F)
+{
+    if (a == b)
+        return A[a];
+    int k = (a + b) / 2;
+    return F(accumulate(A, a, k, F), accumulate(A, k, b, F));
+}
+```
+
+这实际上定义了一个参数中包含函数的高阶函数 `accumulate`，现在我们分别它用于加法、乘法、异或：
+
+```c
+// 加法
+int add(int x, int y){return x + y;}
+// 乘法
+int mul(int x, int y){return x * y;}
+// 异或
+int xor(int x, int y){return x ^ y;}
+```
+
+```c
+// 分别求同一个数组 A[n] 的 [a, b) 区间的累操作：
+// 累加：
+int sum = accumulate(A, a, b, add);
+// 累乘：
+int prod = accumulate(A, a, b, mul);
+// 累异或：
+int xor_sum = accumulate(A, a, b, xor);
+```
+
+这样的高阶函数有很多，包括 `C++ STL` 中 `algorithm` 的 `std::sort` 函数。高阶函数可以让算法结构和操作本身分离，从而实现代码的复用。
 </blockquote></details>
 
-<h3 id="cp6p2"><ruby>句柄<rt>Handle</rt></ruby>：广义指针</h3>
+<font color="#71AEE2"><b>使用高阶函数实现同构的算法——可是作为一个新手我根本不会写啊！！！</b></font>
+<font color="#AC6E46"><b>但是这就是函数指针最有意义的用法了——这不但是极具理论价值的<small><a href="https://plato.stanford.edu/entries/lambda-calculus/">(Lambda Calculus)</a></small>，也是极具工程价值的<small><a href="https://www.geeksforgeeks.org/callbacks-in-c/#:~:text=A%20callback%20is%20any%20executable%20code%20that%20is,it%20will%20be%20called%20as%20a%20Callback%20function.">(Callback Functions and Internet)</a></small>。</b></font>
+
+当然，这节的内容不能理解完全是无关紧要的——如果不是对计算机感兴趣的话。
+事实上，即使是学习计算机有关专业的学生，这节的理解也是无关紧要的——总有一天你会在实践中理解这一切。
+<span class="heimu">（如果是数学专业或者计算机专业的学生，先了解 Lambda Calculus 会对理解本节有帮助。）</span>
+
+<h2 id="cp7">第七节：<ruby>句柄<rt>Handle</rt></ruby>：广义指针</h2>
+<table><tr><td width="80"><a href="#h1"><img src="./Encirclingtantrasanskrit.png"></a> </td><td> <i>Rose is a rose is a rose.</i> </td></tr></table>
 
 未完待续。
 
