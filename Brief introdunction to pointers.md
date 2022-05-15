@@ -1,44 +1,54 @@
 <head>
 <!--Heimu from moegirlpedia-->
 <style>
-.heimu,
-  .heimu a,
-  a .heimu,
-  .heimu a.new {
+  .lumia,
+  .lumia a,
+  a .lumia,
+  .lumia a.new {
     background-color: #252525;
     color: #252525;
     text-shadow: none;
   }
-  .heimu:hover,
-  .heimu:active,
-  .heimu:hover .heimu,
-  .heimu:active .heimu {
+  .lumia:hover,
+  .lumia:active,
+  .lumia:hover .lumia,
+  .lumia:active .lumia {
     color: rgba(230, 231, 234, 0.848) !important;
   }
-  .heimu:hover a,
-  a:hover .heimu,
-  .heimu:active a,
-  a:active .heimu {
+  .lumia:hover a,
+  a:hover .lumia,
+  .lumia:active a,
+  a:active .lumia {
     color: rgba(173, 216, 230, 0.887) !important;
   }
-  .heimu:hover .new,
-  .heimu .new:hover,
-  .new:hover .heimu,
-  .heimu:active .new,
-  .heimu .new:active,
-  .new:active .heimu {
+  .lumia:hover .new,
+  .lumia .new:hover,
+  .new:hover .lumia,
+  .lumia:active .new,
+  .lumia .new:active,
+  .new:active .lumia {
     color: #BA0000 !important;
   }
   table {
     display: block;
     overflow-x: scroll;
-}
+  }
+  .koishi
+  .satori {
+    display: none;
+    min-width: 70px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+  }
+  .koishi:hover .satori{
+    display: block;
+  }
 </style>
 </head>
 <body>
 <div style="width: 100%; min-width: 450px; max-width:800px">
 
-> ref ver 6.5
+> 2022-05-15 SUN
 
 <h1 id="h1">C语言指针指北</h1>
 <table><tr><td width="80"> <a href="https://gitee.com/Tomnycui"><img id="i0" src="./Knock.png"></a> </td> <td style="word-break:break-all"> <i>阅读本文，你将得到： <bk/> 对<b>内存</b>、<b>指针</b>、<b>字符串</b>、<b>函数调用和参数传递</b>、<b>文件操作</b> 的深刻理解。</i> </td> </tr></table>
@@ -58,7 +68,7 @@
 <tr><td><a href="#cp4"><img src="。/../Azoth.png"></a></td><td>第四节：<br/>动态内存管理</td></tr>
 <tr><td><a href="#cp5"><img src="./Consecrated_Lintel.png"></a></td><td>第五节：<br/>地址的传递</td></tr>
 <tr><td><a href="#cp6"><img src="./Frangiclave.png"></a></td><td>第六节：<br/>函数指针与高阶函数初步</td></tr>
-<tr><td><a href="#cp7"><img src="./Encirclingtantrasanskrit.png"></a></td><td>第七节：<br/>句柄与广义指针</td></tr>
+<tr><td><a href="#cp7"><img src="./docs/Port_Noon.png"></a></td><td>序章：<br/>结束与开始</td></tr>
 </table>
 </td>
 <td>
@@ -91,7 +101,7 @@ A byte is the smallest addressable unit of memory. It is defined as a contiguo
 
 - 字节是可访问的最小<ruby>内存单位<rt>memory unit</rt></ruby>；
 - 字节的<ruby>地址<rt>address</rt></ruby>具有唯一性；
-- 字节的<ruby>地址<rt>address</rt></ruby>具有<ruby>后继性<rt>在整数集内的</rt></ruby>；<span class="heimu"><details><summary>解释：「后继性」</summary><blockquote><p>「后继性」指一个元素有其「后继者」的性质。<br/>例如：`0` 的后继是 `1`，`1` 的后继是 `2`，……<br/><i>由于这条性质来自于自然数，因此不妨看看其来源：<a href="https://encyclopediaofmath.org/wiki/Peano_axioms">Encyclopedia of Math: Peano_axioms</a></i></p></blockquote></details></span>
+- 字节的<ruby>地址<rt>address</rt></ruby>具有<ruby>后继性<rt>在整数集内的</rt></ruby>；<span class="lumia"><details><summary>解释：「后继性」</summary><blockquote><p>「后继性」指一个元素有其「后继者」的性质。<br/>例如：`0` 的后继是 `1`，`1` 的后继是 `2`，……<br/><i>由于这条性质来自于自然数，因此不妨看看其来源：<a href="https://encyclopediaofmath.org/wiki/Peano_axioms">Encyclopedia of Math: Peano_axioms</a></i></p></blockquote></details></span>
 
 <font color="#71AEE2"><b>就这？</b></font>
 <font color="#AC6E46"><b>就这。这已经是完整的（静态）内存模型的概念了。</b></font>
@@ -102,8 +112,8 @@ A byte is the smallest addressable unit of memory. It is defined as a contiguo
 <h2 id="cp2">第二节：指针！指针！</h2>
 <table><tr><td width="80"><a href="#h1"><img id="i2" src="./Geminiadfucine.png"></a> </td><td> <i>The Pointers permits no seal and no isolation. It thrusts us gleefully out of the safety of ignorance.</i> </td></tr></table>
 
-如上文所说，C作为强大的底层语言，具有直接操作硬件<small><span class="heimu">（尤其是内存）</span></small>的能力，这种能力的体现就是指针。
-一切在内存上的数据<small><span class="heimu">（包括系统和其他程序的数据和本体）</span></small>都在指针的操作范围内。<small><span class="heimu">（一个著名的例子是 Cheat Engine 的内存修改）</span></small>
+如上文所说，C作为强大的底层语言，具有直接操作硬件<small><span class="lumia">（尤其是内存）</span></small>的能力，这种能力的体现就是指针。
+一切在内存上的数据<small><span class="lumia">（包括系统和其他程序的数据和本体）</span></small>都在指针的操作范围内。<small><span class="lumia">（一个著名的例子是 Cheat Engine 的内存修改）</span></small>
 
 <font color="Gold"><b>[WARNING: ]</font> 接下来所提到的所有指针均指「<ruby>变量指针<rt>Pointer of Varible</rt></ruby>」并且简称为「指针」。对于「<ruby>函数指针<rt>Function Pointer</rt></ruby>」，我们将在最后一节提及。</b>
 > 现在介绍函数指针还为时过早，我们不妨放到最后谈，在此之前如无特别注明，所有提及的指针都是变量指针，下面不引起混淆时简称指针。
@@ -133,7 +143,7 @@ A byte is the smallest addressable unit of memory. It is defined as a contiguo
 
 - 对于内存位置，根据字节地址的唯一确定性，**储存「变量所占据的第一个字节的地址」**。
 - 对于长度和解释方式，在编译期处理——也就是前面提到的，使用形式上的“类型”来进行处理。
-指针的“类型”和指针变量本身无关，而是用于解释被指向的内存区域——至于那块区域是否真的存在这样同类型的一个变量，实际上无法检查。<span class="heimu">因为「类型」这个概念本身就只存在于编译期。</span>
+指针的“类型”和指针变量本身无关，而是用于解释被指向的内存区域——至于那块区域是否真的存在这样同类型的一个变量，实际上无法检查。<span class="lumia">因为「类型」这个概念本身就只存在于编译期。</span>
 
 这三个信息，也就是一个指针，足以用于控制任意内存区域——以任意方式。
 我们可以这样声明指针：
@@ -151,7 +161,7 @@ A byte is the smallest addressable unit of memory. It is defined as a contiguo
 于是我们得到了这样的一行代码：`int *p = NULL;` 声明了名为 `p` 的指针，将以 `int` 的解释方式解释它所指向的内存区域，并且初始化——将它指向一个安全的、没有任何内容的、保留的地址：`NULL`。
 
 > `NULL` 是一个常量，代表一个安全的内存地址，以避免出现「野指针」——一种没有进行初始化的指针，指向随机的位置。
-用 `0` 或者 `nullptr` 替代 `NULL` 一般情况下都是允许的，但不提倡使用前者<span class="heimu">（尽管一般情况下 <code class="heimu">NULL</code> 的值实际上就是 <code class="heimu">0</code>，但这是由操作系统决定的）</span>，而后者是C++的关键字，不能在纯C下使用。
+用 `0` 或者 `nullptr` 替代 `NULL` 一般情况下都是允许的，但不提倡使用前者<span class="lumia">（尽管一般情况下 <code class="lumia">NULL</code> 的值实际上就是 <code class="lumia">0</code>，但这是由操作系统决定的）</span>，而后者是C++的关键字，不能在纯C下使用。
 
 现在我们有指针了。
 
@@ -200,11 +210,11 @@ short *p_short = &a;
 </td></tr></table>
 </td></tr></table>
 
-<font color="#71AEE2"><b>我想我理解「完全等价」了：<code>(*p_int)</code> 成为了 <code>a</code> 的一个功能完整的「替身」，所有对 <code>(*p_int)</code> 的操作实际上都会落到 <code>a</code> 上——这仅仅是因为 <code>p_int</code> 持有 <code>a</code> 的地址吗？<code>p_int</code> 是怎么知道 <code>a</code> 的类型的呢？<small><span class="heimu">（换言之，编译器怎么知道要用处理<code class="heimu">int</code>的方式处理<code class="heimu">a</code>呢？）</span></small></b></font>
+<font color="#71AEE2"><b>我想我理解「完全等价」了：<code>(*p_int)</code> 成为了 <code>a</code> 的一个功能完整的「替身」，所有对 <code>(*p_int)</code> 的操作实际上都会落到 <code>a</code> 上——这仅仅是因为 <code>p_int</code> 持有 <code>a</code> 的地址吗？<code>p_int</code> 是怎么知道 <code>a</code> 的类型的呢？<small><span class="lumia">（换言之，编译器怎么知道要用处理<code class="lumia">int</code>的方式处理<code class="lumia">a</code>呢？）</span></small></b></font>
 <font color="#AC6E46"><b>事实上，它根本就不知道。</b></font>
 
-当我们获取 `a` 的地址的时候，实际上我们只获取了 `a` 的地址，而丢失了所有其他能使它成为变量的信息：包括它的**名字**和**类型**，<small><span class="heimu">（「类型」包括了「大小（长度）」和「解释方式」两种信息）</span></small> 在只知道地址的情况下，我们是无法正确使用这块属于 `a` 的内存区域的。
-但是我们可以指定如何解释它——使用指针的「类型」。<span class="heimu"><s>如果忘了，不妨翻翻前面的内容先复习一下。</s></span>
+当我们获取 `a` 的地址的时候，实际上我们只获取了 `a` 的地址，而丢失了所有其他能使它成为变量的信息：包括它的**名字**和**类型**，<small><span class="lumia">（「类型」包括了「大小（长度）」和「解释方式」两种信息）</span></small> 在只知道地址的情况下，我们是无法正确使用这块属于 `a` 的内存区域的。
+但是我们可以指定如何解释它——使用指针的「类型」。<span class="lumia"><s>如果忘了，不妨翻翻前面的内容先复习一下。</s></span>
 上面的例子中，使用的是定义为：`int *p;` 的指针，因此使用 `*p` 时，其整体的类型是 `int`。
 同理，定义为：`float *p;` 的指针，使用 `*p` 时，其整体的类型是 `float`；
 定义为：`short *p;` 的指针，使用 `*p` 时，其整体的类型是 `short`。
@@ -216,14 +226,14 @@ short *p_short = &a;
 <font color="#AC6E46"><b>因此被以 `short` 的形式使用的也只有 `int` 中最低位的两个字节。</b></font>
 
 <font color="#71AEE2"><b>那如果使用的是比 `int` 还长的 `long long` 呢？</b></font>
-<font color="#AC6E46"><b>不管，直接从地址确定的那个 `byte` 开始数，数够8个<small><span class="heimu">（<code class="heimu">long long</code> 长度为 <code class="heimu">8bytes</code>）</span></small>，当 `long long` 用。</b></font>
+<font color="#AC6E46"><b>不管，直接从地址确定的那个 `byte` 开始数，数够8个<small><span class="lumia">（<code class="lumia">long long</code> 长度为 <code class="lumia">8bytes</code>）</span></small>，当 `long long` 用。</b></font>
 
 <font color="#71AEE2"><b>所以无论是什么类型的指针，间接访问的时候都是直接按地址找第一个字节，然后数够足够的字节吗？</b></font>
 <font color="#AC6E46"><b>正是如此。</b></font>
 
 <details>
   <summary>知识扩充：「为什么要用 <code>NULL</code> 初始化指针？」</summary>
-  <blockquote>由于指针储存的值被当作地址解释，因此对指针「间接访问」时，操作会落实到对应的内存上。在没有初始化的时候，指针一开始指向的地址是不可预知的——可能是操作系统中的某个关键数据中的一部分——在这个位置写入新的值会导致操作系统崩溃。而 <code>NULL</code> 是一个约定俗成的位置，操作系统会保证对这个位置的任何操作都是无效的——例如间接访问 <code>NULL</code> 指向的内存<span class="heimu">（0号位置）</span>不会崩溃系统，但会崩溃你的程序。 </blockquote>
+  <blockquote>由于指针储存的值被当作地址解释，因此对指针「间接访问」时，操作会落实到对应的内存上。在没有初始化的时候，指针一开始指向的地址是不可预知的——可能是操作系统中的某个关键数据中的一部分——在这个位置写入新的值会导致操作系统崩溃。而 <code>NULL</code> 是一个约定俗成的位置，操作系统会保证对这个位置的任何操作都是无效的——例如间接访问 <code>NULL</code> 指向的内存<span class="lumia">（0号位置）</span>不会崩溃系统，但会崩溃你的程序。 </blockquote>
 </details>
 
 <details>
@@ -248,7 +258,7 @@ short *p_short = &a;
 
 <details>
   <summary>知识扩充：「解除引用算符」</summary>
-  <blockquote><ruby>解除引用算符<rt>Dereference Operator</rt></ruby>实际上就是<ruby>间接访问算符<rt>Indirection Operator</rt></ruby>，这实际上是一个历史问题。国内对「解除引用」的翻译往往各有千秋，甚至违反直觉，阻碍理解<span class="heimu">（因为C++中「引用」有特殊含义）</span>，因此这里不采用这个名称。</blockquote>
+  <blockquote><ruby>解除引用算符<rt>Dereference Operator</rt></ruby>实际上就是<ruby>间接访问算符<rt>Indirection Operator</rt></ruby>，这实际上是一个历史问题。国内对「解除引用」的翻译往往各有千秋，甚至违反直觉，阻碍理解<span class="lumia">（因为C++中「引用」有特殊含义）</span>，因此这里不采用这个名称。</blockquote>
 </details>
 
 #### 总结：
@@ -292,7 +302,7 @@ short *p_short = &a;
 > 2. 字节的地址具有唯一性；
 > 3. 字节的地址具有在整数集内的后继性；
 >  
-> 其中，条件 (1) 已用于推出变量的本质；条件 (2) 建立了从地址到变量的映射关系<small><span class="heimu">（「寻址」和「间接访问」）</span></small>，而条件 (3) 还没有被使用。
+> 其中，条件 (1) 已用于推出变量的本质；条件 (2) 建立了从地址到变量的映射关系<small><span class="lumia">（「寻址」和「间接访问」）</span></small>，而条件 (3) 还没有被使用。
 
 从条件 (3) 我们可以推出：
 > **3.1. 在已知一个地址 p 的条件下，p 减去一个不大于自身的正整数或加上一个任意大小的正整数后，得到的仍为合法的地址。**
@@ -303,7 +313,7 @@ short *p_short = &a;
 <font color="#AC6E46"><b>是的。不仅如此，数加和数减也是用于计算指针偏移的。</b></font>
 
 **指针偏移本质上是地址的计算。**
-为了说明这类操作可以怎么用，我们得先找一片连续的内存区域。在这里，选用数组的方式来实现。<details><summary>解释：「数组」</summary><blockquote><p><small>对于数组的认识，本来假定读者已经熟悉，但此处不妨作为一个复习。</small><br/><b><ruby>数组<rt>Array</rt></ruby></b>是一种在内存中连续分配<span class="heimu">（占有连续的内存区域）</span>的、固定长度的数据结构。显然：一个储存 `<type>` 类型变量的长度为 `N` 的数组占有内存大小为：<br/>`N * sizeof(<type>)`</p></blockquote></details>
+为了说明这类操作可以怎么用，我们得先找一片连续的内存区域。在这里，选用数组的方式来实现。<details><summary>解释：「数组」</summary><blockquote><p><small>对于数组的认识，本来假定读者已经熟悉，但此处不妨作为一个复习。</small><br/><b><ruby>数组<rt>Array</rt></ruby></b>是一种在内存中连续分配<span class="lumia">（占有连续的内存区域）</span>的、固定长度的数据结构。显然：一个储存 `<type>` 类型变量的长度为 `N` 的数组占有内存大小为：<br/>`N * sizeof(<type>)`</p></blockquote></details>
 
 先整一个数组：
 
@@ -311,7 +321,7 @@ short *p_short = &a;
 int array[114514] = {1, 9, 1, 9, 8, 1, 0};
 ```
 
-就这样我们获得了一个名为 `array` 的，长度为 `114514`，第 `0~6` 个元素已经指定<small><span class="heimu">（依次为1、9、1、9、8、1、0）</span></small>的数组。
+就这样我们获得了一个名为 `array` 的，长度为 `114514`，第 `0~6` 个元素已经指定<small><span class="lumia">（依次为1、9、1、9、8、1、0）</span></small>的数组。
 
 显然，我们可以取其中一个元素的地址出来看看：
 
@@ -342,7 +352,7 @@ int *needle = &(array[2]);
 
 <font color="Gold"><b>[WARNING: ]</font> 接下来开始提及的内容请务必认真注意。</b>
 
-注意到刚刚我们使用的数组下标是在定义范围内的。如果使用范围外的内存会发生什么？<small><span class="heimu">例如：数组下标越界、指针指向的地址是你不该动的……</span></small>
+注意到刚刚我们使用的数组下标是在定义范围内的。如果使用范围外的内存会发生什么？<small><span class="lumia">例如：数组下标越界、指针指向的地址是你不该动的……</span></small>
 <blockquote><div align="center">我很想这么说：「什么都不会发生。」<br/>但我的运气实在是太坏了。</div><div align="right">——沃·兹基硕德</div></blockquote>
 
 实际上，一切皆有可能，包括系统崩溃。
@@ -358,7 +368,7 @@ int *needle = &(array[2]);
 
 1. 所有元素都是 `char`；
 2. 至少有一个元素为 `'\0'`。
-<span class="heimu"><code class="heimu">'\0'</code> 是一个特殊字符，ascii值是 <code class="heimu">0</code>，又称0字符，用于标记字符串的结尾。</span>
+<span class="lumia"><code class="lumia">'\0'</code> 是一个特殊字符，ascii值是 <code class="lumia">0</code>，又称0字符，用于标记字符串的结尾。</span>
 
 满足以上两条的数组才能叫字符串。例如数组：
 
@@ -380,7 +390,7 @@ char str_a[] = {'H', 'e', 'l', 'l', 'o', '\0'};
 </blockquote>
 
 <font color="#71AEE2"><b>我想起来了——可是这又有什么用呢？</b></font>
-<font color="#AC6E46"><b>这种动态获取的内存是很多数据结构<small><span class="heimu">（如：链表、树、图）</span></small>的重要实现方式，在这里我暂时不会深入讲解——但是总而言之，这大有用武之地。</b></font>
+<font color="#AC6E46"><b>这种动态获取的内存是很多数据结构<small><span class="lumia">（如：链表、树、图）</span></small>的重要实现方式，在这里我暂时不会深入讲解——但是总而言之，这大有用武之地。</b></font>
 <font color="#71AEE2"><b>听起来有点意思，怎样获取这种动态的内存呢？</b></font>
 
 操作系统是内存的管理者，所有内存理论上都是操作系统进行管理的——所以要获取一块内存，得向操作系统申请——这就要用到函数 `malloc`。
@@ -507,7 +517,7 @@ void swap(int *p_a, int *p_b)
 使用 `swap(&x, &y);` 来完成交换。
 
 <font color="#71AEE2"><b>这也太作弊了吧？这是怎么做到修改了外面的变量的？`p_a` 和 `p_b` 不会影响到外面的 `&x` 和 `&y` 啊？</b></font>
-<font color="#AC6E46"><b>确实没有，但我们本来想动的就是地址背后的东西——`x` 和 `y` 本身。操作 `p_a` 和 `p_b` <span class="heimu">像嘉心糖一样</span>什么用都没有，但是 `*p_a` 和 `*p_b` 真的就等价于外面的 `x` 和 `y` 啊。</b></font>
+<font color="#AC6E46"><b>确实没有，但我们本来想动的就是地址背后的东西——`x` 和 `y` 本身。操作 `p_a` 和 `p_b` <span class="lumia">像嘉心糖一样</span>什么用都没有，但是 `*p_a` 和 `*p_b` 真的就等价于外面的 `x` 和 `y` 啊。</b></font>
 
 这种技巧更多用于数组的传递。
 数组作为一种连续的内存区域，完成传递只需要三种信息：
@@ -523,7 +533,7 @@ void swap(int *p_a, int *p_b)
 
 ——实际上这就是数组本身的组织方式。
 
-对于某些特殊的数组，如果已知用固定的元素作为结尾，例如 `0`，并且保证此元素在整个数组中必定存在且出现在结尾，那么就不需要额外传递数组长度——因为数组长度可以由数据本身给出——这类数组的典型例子就是字符串。<span class="heimu"><s>忘了就翻前面的知识扩充。</s></span>
+对于某些特殊的数组，如果已知用固定的元素作为结尾，例如 `0`，并且保证此元素在整个数组中必定存在且出现在结尾，那么就不需要额外传递数组长度——因为数组长度可以由数据本身给出——这类数组的典型例子就是字符串。<span class="lumia"><s>忘了就翻前面的知识扩充。</s></span>
 
 <details><summary>例子：获取字符串的长度</summary>
 
@@ -564,7 +574,7 @@ void swap(int &ref_a, int &ref_b)
 *在开始讲述本章内容之前，我们不妨了解一些程序运行的简单知识。*
 
 <details><summary>知识扩充：程序运行的地点</summary><blockquote>
-显然而且毫无疑问地，所有程序运行时，都需要把自己的机器码<small><span class="heimu">也就是二进制指令</span></small>载入内存——这包括所有操作数据的代码，也就是我们通常意义上所说的函数。
+显然而且毫无疑问地，所有程序运行时，都需要把自己的机器码<small><span class="lumia">也就是二进制指令</span></small>载入内存——这包括所有操作数据的代码，也就是我们通常意义上所说的函数。
 也就是说，一旦程序开始运行，它的有关文件就会从硬盘上被读入到内存中去，产生一个程序实体——实际被执行的是这个实体——一个完全在内存上的实体。
 换而言之，在程序运行的时候完全可以获取任何自己的组件——包括所有函数——的地址。
 </blockquote></details><br/>
@@ -574,7 +584,7 @@ void swap(int &ref_a, int &ref_b)
 > 一般来说，函数指针在 `C++` 中有至少两种，但是在 `C` 中只有一种。由于这里主要介绍 `C`，因此默认函数指针只有一种：普通函数指针。
 
 函数指针的概念和普通指针几乎一致，因此我们将使用类似的方式引出函数指针的概念。
-首先，我们先复习一个函数的构成部分。<small><span class="heimu">（注：也就是要正确的调用一个函数需要多少信息。）</span></small>
+首先，我们先复习一个函数的构成部分。<small><span class="lumia">（注：也就是要正确的调用一个函数需要多少信息。）</span></small>
 
 **函数的构成三要素：**
 
@@ -588,12 +598,12 @@ void swap(int &ref_a, int &ref_b)
 **其次是函数的调用方式**，也就是函数的参数列表，决定了这个函数会用什么参数进行调用。这很好理解。<br/>
 <font color="#71AEE2"><b>但是“函数的唯一标识符”又是什么？</b></font>
 <font color="#AC6E46"><b>这其实是一个很常见的概念，在<code>C</code> 里面，它就是函数的<font size="5">名称</font>。因此 <code>C</code> 中的函数是不能重名的——以确保函数具有唯一的标识。</b></font><br/>
-**唯一的标识+返回值，这就是调用函数和处理函数返回值所需要的所有信息。**<small><span class="heimu">但是在 <code class="heimu">C++</code> 中允许函数重载，因为 <code class="heimu">C++</code> 有一套<ruby>名称粉碎<rt class="heimu">Name Mangling</rt></ruby>机制。</span></small>
+**唯一的标识+返回值，这就是调用函数和处理函数返回值所需要的所有信息。**<small><span class="lumia">但是在 <code class="lumia">C++</code> 中允许函数重载，因为 <code class="lumia">C++</code> 有一套<ruby>名称粉碎<rt class="lumia">Name Mangling</rt></ruby>机制。</span></small>
 </blockquote></details><br/>
 
 显然，当我们使用函数指针的时候，也应该还原这三种信息。
 
-首先是函数的唯一标识符——储存函数的地址就可以解决<small><span="heimu">唯一标识符不仅有函数名，还有地址。</span></small>；其次是函数的调用方式（参数列表）和返回值——`C` 采用的是和变量类似的处理方式——一并写在函数指针的“类型”里面。
+首先是函数的唯一标识符——储存函数的地址就可以解决<small><span="lumia">唯一标识符不仅有函数名，还有地址。</span></small>；其次是函数的调用方式（参数列表）和返回值——`C` 采用的是和变量类似的处理方式——一并写在函数指针的“类型”里面。
 
 由于概念相对于介绍普通指针时较少，而较难，本章采用直接给例子的方式进行讲解。
 
@@ -641,7 +651,7 @@ p_f(1.0, 1, 1.0f, "Hello"); // 函数指针，不需要 *
 <h3>例子：累积操作</h3>
 
 考虑一类问题：一列连续的被操作数上进行累积的二元可交换操作，例如：累加、累乘等。
-考虑到这些操作都具有可交换性，<small><span class="heimu">（例如 <code class="heimu">a+b==b+a</code>）</span></small>我们可以通过递归大幅降低操作次数。<small><span class="heimu">（从 <code class="heimu">O(n)</code> 到 <code class="heimu">O(log n)</code>）</span></small>
+考虑到这些操作都具有可交换性，<small><span class="lumia">（例如 <code class="lumia">a+b==b+a</code>）</span></small>我们可以通过递归大幅降低操作次数。<small><span class="lumia">（从 <code class="lumia">O(n)</code> 到 <code class="lumia">O(log n)</code>）</span></small>
 对此类问题总结出如下递归公式：
 
 - 设 `S(a, b)` 为数组 `A[n]` 在 `[a, b)` 区间内的整体操作结果，其中 `b ≤ n`，
@@ -777,12 +787,18 @@ int main()
 
 当然，这节的内容不能理解完全是无关紧要的——如果不是对计算机感兴趣的话。
 事实上，即使是学习计算机有关专业的学生，这节的理解也是无关紧要的——总有一天你会在实践中理解这一切。
-<span class="heimu">（如果是数学专业或者计算机专业的学生，先了解 Lambda Calculus 会对理解本节有帮助。）</span>
+<span class="lumia">（如果是数学专业或者计算机专业的学生，先了解 Lambda Calculus 会对理解本节有帮助。）</span>
 
-<h2 id="cp7">第七节：<ruby>句柄<rt>Handle</rt></ruby>与广义指针</h2>
-<table><tr><td width="80"><a href="#h1"><img src="./Encirclingtantrasanskrit.png"></a> </td><td> <i>Rose is a rose is a rose. Loveliness extreme. Extra gaiters, Loveliness extreme. Sweetest ice-cream. Pages ages page ages page ages.</i> </td></tr></table>
+<h2 id="cp7">序章：结束与开始</h2>
+<table><tr><td width="80"><a href="#h1"><img src="./Port_Noon.png"></a> </td><td> <i>Rose is a rose is a rose. Loveliness extreme. Extra gaiters, Loveliness extreme. Sweetest ice-cream. Pages ages page ages page ages.</i> </td></tr></table>
 
-未完待续。
+这篇面向 `C` 的指针入门到这里就结束了。
+
+从最初的内存模型到利用指针实现的动态内存管理，再到指针和数组与字符串的联系——这不是一篇短的文章，但对于指针来说也确实只能算是入门。同时，这篇文章集中于介绍 `C` 的指针，在 `C++` 中，内存分配机制有了比较大的变化——但是只要保证分配使用的是 `malloc`、`realloc`、`calloc` 而释放使用的是 `free`，这篇文章也可以算是合格的 `C++` 指针入门。
+
+这篇指针入门没有介绍链表等离散的数据结构，因为它们在纯 `C` 下的实现巧妙而对初学者困难。作为一篇入门文章，打击初学者不是必要的。但是看完这篇文章之后，在恰当的时候，不妨看看链表的概念与实现。
+
+也许我还会去写下一篇，详细介绍 `C++` 的指针入门，也许不会。成文虽然尚且幼稚粗糙，但过程中耗费了许多心力，也该休息一下了。
 
 </div>
 </body>
