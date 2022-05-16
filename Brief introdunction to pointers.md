@@ -33,20 +33,10 @@
     display: block;
     overflow-x: scroll;
   }
-  .koishi
-  .satori {
-    display: none;
-    min-width: 70px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    padding: 12px 16px;
-  }
-  .koishi:hover .satori{
-    display: block;
-  }
 </style>
 </head>
 <body>
-<div style="width: 100%; min-width: 450px; max-width:800px">
+<div style="width: 100%; min-width: 430px; max-width:800px">
 
 > 2022-05-15 SUN
 
@@ -68,13 +58,14 @@
 <tr><td><a href="#cp4"><img src="。/../Azoth.png"></a></td><td>第四节：<br/>动态内存管理</td></tr>
 <tr><td><a href="#cp5"><img src="./Consecrated_Lintel.png"></a></td><td>第五节：<br/>地址的传递</td></tr>
 <tr><td><a href="#cp6"><img src="./Frangiclave.png"></a></td><td>第六节：<br/>函数指针与高阶函数初步</td></tr>
-<tr><td><a href="#cp7"><img src="./docs/Port_Noon.png"></a></td><td>序章：<br/>结束与开始</td></tr>
+<tr><td><a href="#cp7"><img src="./Port_Noon.png"></a></td><td>序章：<br/>结束与开始</td></tr>
 </table>
 </td>
 <td>
+<div align="center" style="line-break: anywhere;"><small><i>点击标题图标可跳转到指定位置</i></small></div>
 <img src="./The_Unnumbered_Stones4x.png">
 <br/>
-<blockquote><p>Each hour has its colour. Each flame has its fuel. Dream furiously.</p></blockquote>
+<blockquote align="center"><p>Each hour has its colour.<br/>Each flame has its fuel.<br/>Dream furiously.</p></blockquote>
 </td>
 </table>
 
@@ -751,9 +742,6 @@ All other functions are first-order functions. In mathematics higher-order funct
     <td>全名</td><td><code>std::sort</code></td>
   </tr>
   <tr>
-    <td>所在头文件</td><td><code>algorithm</code></td>
-  </tr>
-  <tr>
     <td colspan="2"><div align="center"><strong>实例见右→</strong></div></td>
   </tr>
 </table>
@@ -796,9 +784,261 @@ int main()
 
 从最初的内存模型到利用指针实现的动态内存管理，再到指针和数组与字符串的联系——这不是一篇短的文章，但对于指针来说也确实只能算是入门。同时，这篇文章集中于介绍 `C` 的指针，在 `C++` 中，内存分配机制有了比较大的变化——但是只要保证分配使用的是 `malloc`、`realloc`、`calloc` 而释放使用的是 `free`，这篇文章也可以算是合格的 `C++` 指针入门。
 
-这篇指针入门没有介绍链表等离散的数据结构，因为它们在纯 `C` 下的实现巧妙而对初学者困难。作为一篇入门文章，打击初学者不是必要的。但是看完这篇文章之后，在恰当的时候，不妨看看链表的概念与实现。
+如果这篇文章能引起你对于 `C` 指针的兴趣的话，或者是对 `C` 的兴趣的话，也许也可以算是一个开始。
+
+这篇指针作为简单的指针入门，没有介绍链表等离散的数据结构的实现，因为它们在纯 `C` 下的实现巧妙而对初学者困难。作为一篇入门文章，打击初学者不是必要的。但是看完这篇文章之后，在恰当的时候，不妨看看链表的概念与实现。
 
 也许我还会去写下一篇，详细介绍 `C++` 的指针入门，也许不会。成文虽然尚且幼稚粗糙，但过程中耗费了许多心力，也该休息一下了。
+
+<h3>Farewell, Amigo</h3>
+
+在这篇文章的最后，附上简单的链表实现：
+
+<details><summary>源码，可以收下。（极长预警）</summary><blockquote>
+
+```c
+#ifndef list_of_double_h
+#define list_of_double_h
+#include <stdio.h>
+typedef long unsigned int size_t;
+struct __NODE_OF_double
+{
+    struct __NODE_OF_double *_next;
+    struct __NODE_OF_double *_previous;
+    double __data;
+};
+typedef struct __LIST_OF_double
+{
+    struct __NODE_OF_double *_holder_node;
+    struct __NODE_OF_double *_visitor_node;
+    size_t _size;
+    size_t _at_visit;
+} list_double;
+list_double *list_double_create()
+{
+    list_double *res = 
+        (list_double *)(malloc(sizeof(struct __LIST_OF_double)));
+    res->_holder_node = 
+        (struct __NODE_OF_double *)malloc(sizeof(struct __NODE_OF_double));
+    res->_size = 0;
+    res->_holder_node->_next = res->_holder_node;
+    res->_holder_node->_previous = res->_holder_node;
+    res->_visitor_node = res->_holder_node->_next;
+    res->_at_visit = 0;
+    ;
+    return res;
+}
+void list_double_push_back(list_double *to, double with)
+{
+    struct __NODE_OF_double *p = 
+        (struct __NODE_OF_double *)malloc(sizeof(struct __NODE_OF_double));
+    p->_previous = to->_holder_node->_previous;
+    p->_next = to->_holder_node;
+    p->__data = with;
+    to->_holder_node->_previous->_next = p;
+    to->_holder_node->_previous = p;
+    if (to->_at_visit || !to->_size)
+    {
+        to->_visitor_node = to->_holder_node->_next;
+        to->_at_visit = 0;
+        ;
+    }
+    ++to->_size;
+    return;
+}
+void list_double_push_head(list_double *to, double with)
+{
+    struct __NODE_OF_double *p = 
+        (struct __NODE_OF_double *)malloc(sizeof(struct __NODE_OF_double));
+    p->_previous = to->_holder_node;
+    p->_next = to->_holder_node->_next;
+    p->__data = with;
+    to->_holder_node->_next->_previous = p;
+    to->_holder_node->_next = p;
+    if (to->_at_visit || !to->_size)
+    {
+        to->_visitor_node = to->_holder_node->_next;
+        to->_at_visit = 0;
+        ;
+    }
+    ++to->_size;
+    return;
+}
+double list_double_at(list_double *which, size_t index)
+{
+    if (!which->_size)
+    {
+        fputs("ERROR: on at() of empty list.", stderr);
+        exit(-1);
+    }
+    if (index >= which->_size)
+    {
+        fputs("ERROR: on at() with invaild index.\n", stderr);
+        exit(-1);
+    }
+    struct __NODE_OF_double *needle = which->_visitor_node;
+    struct __NODE_OF_double *stop = which->_holder_node;
+    size_t at = which->_at_visit;
+    size_t half = (which->_size) >> 1;
+    if (((at > index) ? (at - index) : (index - at)) > half)
+    {
+        if (at > half)
+        {
+            needle = stop->_next;
+            at = 0;
+        }
+        else
+        {
+            needle = stop->_previous;
+            at = which->_size - 1;
+        }
+    }
+    while (at < index)
+    {
+        needle = needle->_next;
+        ++at;
+    }
+    while (at > index)
+    {
+        needle = needle->_previous;
+        --at;
+    }
+    which->_at_visit = at;
+    which->_visitor_node = needle;
+    return needle->__data;
+}
+void list_double_remove(list_double *which, size_t index)
+{
+    if (!which->_size)
+    {
+        fputs("ERROR: on remove() of empty list.", stderr);
+        exit(-1);
+    }
+    struct __NODE_OF_double *needle = which->_visitor_node;
+    struct __NODE_OF_double *stop = which->_holder_node;
+    size_t at = which->_at_visit;
+    while (at < index)
+    {
+        if (needle == stop)
+        {
+            fputs("ERROR: on remove() with up-outbounded index.\n", stderr);
+            exit(-1);
+        }
+        needle = needle->_next;
+        ++at;
+    }
+    while (at > index)
+    {
+        if (needle == stop)
+        {
+            fputs("ERROR: on remove() with down-outbounded index.\n", stderr);
+            exit(-1);
+        }
+        needle = needle->_previous;
+        --at;
+    }
+    if (needle->_previous != stop)
+    {
+        which->_visitor_node = needle->_previous;
+        which->_at_visit = at - 1;
+    }
+    else if (needle->_next != stop)
+    {
+        which->_visitor_node = needle->_next;
+        which->_at_visit = at + 1;
+    }
+    else
+    {
+        which->_visitor_node = which->_holder_node->_next;
+        which->_at_visit = 0;
+        ;
+    }
+    needle->_previous->_next = needle->_next;
+    needle->_next->_previous = needle->_previous;
+    free(needle);
+    --which->_size;
+}
+double list_double_pop_back(list_double *which)
+{
+    double ret;
+    if (!which->_size)
+    {
+        fputs("ERROR: on pop() of empty list.", stderr);
+        exit(-1);
+    }
+    struct __NODE_OF_double *res = which->_holder_node->_previous;
+    res->_previous->_next = which->_holder_node;
+    which->_holder_node->_previous = res->_previous;
+    --which->_size;
+    ret = res->__data;
+    free(res);
+    if (which->_at_visit)
+    {
+        which->_visitor_node = which->_holder_node->_next;
+        which->_at_visit = 0;
+        ;
+    }
+    return ret;
+}
+double list_double_pop_head(list_double *which)
+{
+    double ret;
+    if (!which->_size)
+    {
+        fputs("ERROR: on pop() of empty list.",
+              stderr);
+        exit(-1);
+    }
+    struct __NODE_OF_double *res = which->_holder_node->_next;
+    res->_next->_previous = which->_holder_node;
+    which->_holder_node->_next = res->_next;
+    --which->_size;
+    ret = res->__data;
+    free(res);
+    if (which->_at_visit)
+    {
+        which->_visitor_node = which->_holder_node->_next;
+        which->_at_visit = 0;
+        ;
+    }
+    return ret;
+}
+void list_double_clear(list_double *which)
+{
+    struct __NODE_OF_double *needle = which->_holder_node->_next;
+    struct __NODE_OF_double *stop = which->_holder_node;
+    while (needle != stop)
+    {
+        struct __NODE_OF_double *tmp = needle;
+        needle = needle->_next;
+        free(tmp);
+    }
+    which->_size = 0;
+    which->_visitor_node = which->_holder_node->_next;
+    which->_at_visit = 0;
+    ;
+}
+void list_double_delete(list_double *which)
+{
+    struct __NODE_OF_double *needle = which->_holder_node->_next;
+    struct __NODE_OF_double *stop = which->_holder_node;
+    while (needle != stop)
+    {
+        struct __NODE_OF_double *tmp = needle;
+        needle = needle->_next;
+        free(tmp);
+    }
+    free(which);
+}
+#endif //list_of_double_h
+```
+
+</blockquote></details>
+
+> 这是一份仿 C++ STL 接口的环链表实现源码，只实现了double类型。仅当学习之用。
+> 现在的你也许不会看懂它，但是你总会有与它再相见的时候——为了某种目的：也许是成绩，也许是技能。
+> 但我决定将这作为全篇文字仅有的复杂实现放在这里，
+> 作最后的道别。
 
 </div>
 </body>

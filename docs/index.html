@@ -8,6 +8,7 @@
 
   <link rel="stylesheet"
     href="file:////home/tci/.vscode/extensions/shd101wyy.document-enhanced-0.6.3/node_modules/@shd101wyy/mume/dependencies/katex/katex.min.css">
+
   <style>
     code[class*="language-"],
     pre[class*="language-"] {
@@ -669,7 +670,7 @@
       background-clip: content-box
     }
 
-    html body[for="html-export"]:not([data-presentation-mode]) {
+    html body[for="presentation"]:not([data-presentation-mode]) {
       position: relative;
       width: 100%;
       height: 100%;
@@ -680,37 +681,37 @@
       overflow: auto
     }
 
-    html body[for="html-export"]:not([data-presentation-mode]) .document {
+    html body[for="presentation"]:not([data-presentation-mode]) .document {
       position: relative;
       top: 0
     }
 
     @media screen and (min-width:914px) {
-      html body[for="html-export"]:not([data-presentation-mode]) .document {
+      html body[for="presentation"]:not([data-presentation-mode]) .document {
         padding: 2em calc(50% - 457px + 2em)
       }
     }
 
     @media screen and (max-width:914px) {
-      html body[for="html-export"]:not([data-presentation-mode]) .document {
+      html body[for="presentation"]:not([data-presentation-mode]) .document {
         padding: 2em
       }
     }
 
     @media screen and (max-width:450px) {
-      html body[for="html-export"]:not([data-presentation-mode]) .document {
+      html body[for="presentation"]:not([data-presentation-mode]) .document {
         font-size: 14px !important;
         padding: 1em
       }
     }
 
     @media print {
-      html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn {
+      html body[for="presentation"]:not([data-presentation-mode]) #sidebar-toc-btn {
         display: none
       }
     }
 
-    html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn {
+    html body[for="presentation"]:not([data-presentation-mode]) #sidebar-toc-btn {
       position: fixed;
       bottom: 8px;
       left: 8px;
@@ -723,11 +724,11 @@
       opacity: .4
     }
 
-    html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+    html body[for="presentation"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
       opacity: 1
     }
 
-    html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+    html body[for="presentation"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
       position: fixed;
       top: 0;
       left: 0;
@@ -741,40 +742,40 @@
       background-color: inherit
     }
 
-    html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+    html body[for="presentation"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
       width: 8px
     }
 
-    html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+    html body[for="presentation"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
       border-radius: 10px;
       background-color: transparent
     }
 
-    html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+    html body[for="presentation"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
       border-radius: 5px;
       background-color: rgba(150, 150, 150, 0.66);
       border: 4px solid rgba(150, 150, 150, 0.66);
       background-clip: content-box
     }
 
-    html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+    html body[for="presentation"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
       text-decoration: none
     }
 
-    html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul {
+    html body[for="presentation"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul {
       padding: 0 1.6em;
       margin-top: .8em
     }
 
-    html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li {
+    html body[for="presentation"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li {
       margin-bottom: .8em
     }
 
-    html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul {
+    html body[for="presentation"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul {
       list-style-type: none
     }
 
-    html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .document {
+    html body[for="presentation"]:not([data-presentation-mode])[html-show-sidebar-toc] .document {
       left: 300px;
       width: calc(100% - 300px);
       padding: 2em calc(50% - 457px - 150px);
@@ -783,23 +784,23 @@
     }
 
     @media screen and (max-width:1274px) {
-      html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .document {
+      html body[for="presentation"]:not([data-presentation-mode])[html-show-sidebar-toc] .document {
         padding: 2em
       }
     }
 
     @media screen and (max-width:450px) {
-      html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .document {
+      html body[for="presentation"]:not([data-presentation-mode])[html-show-sidebar-toc] .document {
         width: 100%
       }
     }
 
-    html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .document {
+    html body[for="presentation"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .document {
       left: 50%;
       transform: translateX(-50%)
     }
 
-    html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+    html body[for="presentation"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
       display: none
     }
 
@@ -814,7 +815,7 @@
   </style>
 </head>
 
-<body for="html-export">
+<body for="presentation">
   <div class="mume document  ">
 
     <!--Heimu from moegirlpedia-->
@@ -855,20 +856,9 @@
         display: block;
         overflow-x: scroll;
       }
-
-      .koishi .satori {
-        display: none;
-        min-width: 70px;
-        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-        padding: 12px 16px;
-      }
-
-      .koishi:hover .satori {
-        display: block;
-      }
     </style>
 
-    <div style="width: 100%; min-width: 450px; max-width:800px">
+    <div style="width: 100%; min-width: 430px; max-width:800px">
       <blockquote>
         <p>2022-05-15 SUN</p>
       </blockquote>
@@ -936,17 +926,20 @@
                     </td>
                   </tr>
                   <tr>
-                    <td><a href="#cp7"><img src="./docs/Port_Noon.png"></a></td>
+                    <td><a href="#cp7"><img src="./Port_Noon.png"></a></td>
                     <td>&#x5E8F;&#x7AE0;&#xFF1A;<br>&#x7ED3;&#x675F;&#x4E0E;&#x5F00;&#x59CB;</td>
                   </tr>
                 </tbody>
               </table>
             </td>
             <td>
+              <div align="center" style="line-break: anywhere;">
+                <small><i>&#x70B9;&#x51FB;&#x6807;&#x9898;&#x56FE;&#x6807;&#x53EF;&#x8DF3;&#x8F6C;&#x5230;&#x6307;&#x5B9A;&#x4F4D;&#x7F6E;</i></small>
+              </div>
               <img src="./The_Unnumbered_Stones4x.png">
               <br>
-              <blockquote>
-                <p>Each hour has its colour. Each flame has its fuel. Dream furiously.</p>
+              <blockquote align="center">
+                <p>Each hour has its colour.<br>Each flame has its fuel.<br>Dream furiously.</p>
               </blockquote>
             </td>
           </tr>
@@ -2313,10 +2306,6 @@ pointer <span class="token operator">=</span> <span class="token constant">NULL<
                         <td><code>std::sort</code></td>
                       </tr>
                       <tr>
-                        <td>&#x6240;&#x5728;&#x5934;&#x6587;&#x4EF6;</td>
-                        <td><code>algorithm</code></td>
-                      </tr>
-                      <tr>
                         <td colspan="2">
                           <div align="center"><strong>&#x5B9E;&#x4F8B;&#x89C1;&#x53F3;&#x2192;</strong></div>
                         </td>
@@ -2389,8 +2378,12 @@ std<span class="token double-colon punctuation">::</span>vector<span class="toke
         &#x800C;&#x91CA;&#x653E;&#x4F7F;&#x7528;&#x7684;&#x662F;
         <code>free</code>&#xFF0C;&#x8FD9;&#x7BC7;&#x6587;&#x7AE0;&#x4E5F;&#x53EF;&#x4EE5;&#x7B97;&#x662F;&#x5408;&#x683C;&#x7684;
         <code>C++</code> &#x6307;&#x9488;&#x5165;&#x95E8;&#x3002;</p>
+      <p>&#x5982;&#x679C;&#x8FD9;&#x7BC7;&#x6587;&#x7AE0;&#x80FD;&#x5F15;&#x8D77;&#x4F60;&#x5BF9;&#x4E8E; <code>C</code>
+        &#x6307;&#x9488;&#x7684;&#x5174;&#x8DA3;&#x7684;&#x8BDD;&#xFF0C;&#x6216;&#x8005;&#x662F;&#x5BF9; <code>C</code>
+        &#x7684;&#x5174;&#x8DA3;&#x7684;&#x8BDD;&#xFF0C;&#x4E5F;&#x8BB8;&#x4E5F;&#x53EF;&#x4EE5;&#x7B97;&#x662F;&#x4E00;&#x4E2A;&#x5F00;&#x59CB;&#x3002;
+      </p>
       <p>
-        &#x8FD9;&#x7BC7;&#x6307;&#x9488;&#x5165;&#x95E8;&#x6CA1;&#x6709;&#x4ECB;&#x7ECD;&#x94FE;&#x8868;&#x7B49;&#x79BB;&#x6563;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x4EEC;&#x5728;&#x7EAF;
+        &#x8FD9;&#x7BC7;&#x6307;&#x9488;&#x4F5C;&#x4E3A;&#x7B80;&#x5355;&#x7684;&#x6307;&#x9488;&#x5165;&#x95E8;&#xFF0C;&#x6CA1;&#x6709;&#x4ECB;&#x7ECD;&#x94FE;&#x8868;&#x7B49;&#x79BB;&#x6563;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x7684;&#x5B9E;&#x73B0;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x4EEC;&#x5728;&#x7EAF;
         <code>C</code>
         &#x4E0B;&#x7684;&#x5B9E;&#x73B0;&#x5DE7;&#x5999;&#x800C;&#x5BF9;&#x521D;&#x5B66;&#x8005;&#x56F0;&#x96BE;&#x3002;&#x4F5C;&#x4E3A;&#x4E00;&#x7BC7;&#x5165;&#x95E8;&#x6587;&#x7AE0;&#xFF0C;&#x6253;&#x51FB;&#x521D;&#x5B66;&#x8005;&#x4E0D;&#x662F;&#x5FC5;&#x8981;&#x7684;&#x3002;&#x4F46;&#x662F;&#x770B;&#x5B8C;&#x8FD9;&#x7BC7;&#x6587;&#x7AE0;&#x4E4B;&#x540E;&#xFF0C;&#x5728;&#x6070;&#x5F53;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4E0D;&#x59A8;&#x770B;&#x770B;&#x94FE;&#x8868;&#x7684;&#x6982;&#x5FF5;&#x4E0E;&#x5B9E;&#x73B0;&#x3002;
       </p>
@@ -2399,6 +2392,259 @@ std<span class="token double-colon punctuation">::</span>vector<span class="toke
         <code>C++</code>
         &#x7684;&#x6307;&#x9488;&#x5165;&#x95E8;&#xFF0C;&#x4E5F;&#x8BB8;&#x4E0D;&#x4F1A;&#x3002;&#x6210;&#x6587;&#x867D;&#x7136;&#x5C1A;&#x4E14;&#x5E7C;&#x7A1A;&#x7C97;&#x7CD9;&#xFF0C;&#x4F46;&#x8FC7;&#x7A0B;&#x4E2D;&#x8017;&#x8D39;&#x4E86;&#x8BB8;&#x591A;&#x5FC3;&#x529B;&#xFF0C;&#x4E5F;&#x8BE5;&#x4F11;&#x606F;&#x4E00;&#x4E0B;&#x4E86;&#x3002;
       </p>
+      <h3>Farewell, Amigo</h3>
+      <p>
+        &#x5728;&#x8FD9;&#x7BC7;&#x6587;&#x7AE0;&#x7684;&#x6700;&#x540E;&#xFF0C;&#x9644;&#x4E0A;&#x7B80;&#x5355;&#x7684;&#x94FE;&#x8868;&#x5B9E;&#x73B0;&#xFF1A;
+      </p>
+      <details>
+        <summary>
+          &#x6E90;&#x7801;&#xFF0C;&#x53EF;&#x4EE5;&#x6536;&#x4E0B;&#x3002;&#xFF08;&#x6781;&#x957F;&#x9884;&#x8B66;&#xFF09;
+        </summary>
+        <blockquote>
+          <pre data-role="codeBlock" data-info="c" class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">ifndef</span> <span class="token expression">list_of_double_h</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">list_of_double_h</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+<span class="token keyword keyword-typedef">typedef</span> <span class="token keyword keyword-long">long</span> <span class="token keyword keyword-unsigned">unsigned</span> <span class="token keyword keyword-int">int</span> <span class="token class-name">size_t</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-struct">struct</span> <span class="token class-name">__NODE_OF_double</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-struct">struct</span> <span class="token class-name">__NODE_OF_double</span> <span class="token operator">*</span>_next<span class="token punctuation">;</span>
+    <span class="token keyword keyword-struct">struct</span> <span class="token class-name">__NODE_OF_double</span> <span class="token operator">*</span>_previous<span class="token punctuation">;</span>
+    <span class="token keyword keyword-double">double</span> __data<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-typedef">typedef</span> <span class="token keyword keyword-struct">struct</span> <span class="token class-name">__LIST_OF_double</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-struct">struct</span> <span class="token class-name">__NODE_OF_double</span> <span class="token operator">*</span>_holder_node<span class="token punctuation">;</span>
+    <span class="token keyword keyword-struct">struct</span> <span class="token class-name">__NODE_OF_double</span> <span class="token operator">*</span>_visitor_node<span class="token punctuation">;</span>
+    <span class="token class-name">size_t</span> _size<span class="token punctuation">;</span>
+    <span class="token class-name">size_t</span> _at_visit<span class="token punctuation">;</span>
+<span class="token punctuation">}</span> list_double<span class="token punctuation">;</span>
+list_double <span class="token operator">*</span><span class="token function">list_double_create</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    list_double <span class="token operator">*</span>res <span class="token operator">=</span> 
+        <span class="token punctuation">(</span>list_double <span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword keyword-sizeof">sizeof</span><span class="token punctuation">(</span><span class="token keyword keyword-struct">struct</span> <span class="token class-name">__LIST_OF_double</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    res<span class="token operator">-&gt;</span>_holder_node <span class="token operator">=</span> 
+        <span class="token punctuation">(</span><span class="token keyword keyword-struct">struct</span> <span class="token class-name">__NODE_OF_double</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword keyword-sizeof">sizeof</span><span class="token punctuation">(</span><span class="token keyword keyword-struct">struct</span> <span class="token class-name">__NODE_OF_double</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    res<span class="token operator">-&gt;</span>_size <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    res<span class="token operator">-&gt;</span>_holder_node<span class="token operator">-&gt;</span>_next <span class="token operator">=</span> res<span class="token operator">-&gt;</span>_holder_node<span class="token punctuation">;</span>
+    res<span class="token operator">-&gt;</span>_holder_node<span class="token operator">-&gt;</span>_previous <span class="token operator">=</span> res<span class="token operator">-&gt;</span>_holder_node<span class="token punctuation">;</span>
+    res<span class="token operator">-&gt;</span>_visitor_node <span class="token operator">=</span> res<span class="token operator">-&gt;</span>_holder_node<span class="token operator">-&gt;</span>_next<span class="token punctuation">;</span>
+    res<span class="token operator">-&gt;</span>_at_visit <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> res<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">list_double_push_back</span><span class="token punctuation">(</span>list_double <span class="token operator">*</span>to<span class="token punctuation">,</span> <span class="token keyword keyword-double">double</span> with<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-struct">struct</span> <span class="token class-name">__NODE_OF_double</span> <span class="token operator">*</span>p <span class="token operator">=</span> 
+        <span class="token punctuation">(</span><span class="token keyword keyword-struct">struct</span> <span class="token class-name">__NODE_OF_double</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword keyword-sizeof">sizeof</span><span class="token punctuation">(</span><span class="token keyword keyword-struct">struct</span> <span class="token class-name">__NODE_OF_double</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    p<span class="token operator">-&gt;</span>_previous <span class="token operator">=</span> to<span class="token operator">-&gt;</span>_holder_node<span class="token operator">-&gt;</span>_previous<span class="token punctuation">;</span>
+    p<span class="token operator">-&gt;</span>_next <span class="token operator">=</span> to<span class="token operator">-&gt;</span>_holder_node<span class="token punctuation">;</span>
+    p<span class="token operator">-&gt;</span>__data <span class="token operator">=</span> with<span class="token punctuation">;</span>
+    to<span class="token operator">-&gt;</span>_holder_node<span class="token operator">-&gt;</span>_previous<span class="token operator">-&gt;</span>_next <span class="token operator">=</span> p<span class="token punctuation">;</span>
+    to<span class="token operator">-&gt;</span>_holder_node<span class="token operator">-&gt;</span>_previous <span class="token operator">=</span> p<span class="token punctuation">;</span>
+    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>to<span class="token operator">-&gt;</span>_at_visit <span class="token operator">||</span> <span class="token operator">!</span>to<span class="token operator">-&gt;</span>_size<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        to<span class="token operator">-&gt;</span>_visitor_node <span class="token operator">=</span> to<span class="token operator">-&gt;</span>_holder_node<span class="token operator">-&gt;</span>_next<span class="token punctuation">;</span>
+        to<span class="token operator">-&gt;</span>_at_visit <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token operator">++</span>to<span class="token operator">-&gt;</span>_size<span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">list_double_push_head</span><span class="token punctuation">(</span>list_double <span class="token operator">*</span>to<span class="token punctuation">,</span> <span class="token keyword keyword-double">double</span> with<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-struct">struct</span> <span class="token class-name">__NODE_OF_double</span> <span class="token operator">*</span>p <span class="token operator">=</span> 
+        <span class="token punctuation">(</span><span class="token keyword keyword-struct">struct</span> <span class="token class-name">__NODE_OF_double</span> <span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword keyword-sizeof">sizeof</span><span class="token punctuation">(</span><span class="token keyword keyword-struct">struct</span> <span class="token class-name">__NODE_OF_double</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    p<span class="token operator">-&gt;</span>_previous <span class="token operator">=</span> to<span class="token operator">-&gt;</span>_holder_node<span class="token punctuation">;</span>
+    p<span class="token operator">-&gt;</span>_next <span class="token operator">=</span> to<span class="token operator">-&gt;</span>_holder_node<span class="token operator">-&gt;</span>_next<span class="token punctuation">;</span>
+    p<span class="token operator">-&gt;</span>__data <span class="token operator">=</span> with<span class="token punctuation">;</span>
+    to<span class="token operator">-&gt;</span>_holder_node<span class="token operator">-&gt;</span>_next<span class="token operator">-&gt;</span>_previous <span class="token operator">=</span> p<span class="token punctuation">;</span>
+    to<span class="token operator">-&gt;</span>_holder_node<span class="token operator">-&gt;</span>_next <span class="token operator">=</span> p<span class="token punctuation">;</span>
+    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>to<span class="token operator">-&gt;</span>_at_visit <span class="token operator">||</span> <span class="token operator">!</span>to<span class="token operator">-&gt;</span>_size<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        to<span class="token operator">-&gt;</span>_visitor_node <span class="token operator">=</span> to<span class="token operator">-&gt;</span>_holder_node<span class="token operator">-&gt;</span>_next<span class="token punctuation">;</span>
+        to<span class="token operator">-&gt;</span>_at_visit <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token operator">++</span>to<span class="token operator">-&gt;</span>_size<span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword keyword-double">double</span> <span class="token function">list_double_at</span><span class="token punctuation">(</span>list_double <span class="token operator">*</span>which<span class="token punctuation">,</span> <span class="token class-name">size_t</span> index<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>which<span class="token operator">-&gt;</span>_size<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">fputs</span><span class="token punctuation">(</span><span class="token string">&quot;ERROR: on at() of empty list.&quot;</span><span class="token punctuation">,</span> <span class="token constant">stderr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">exit</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>index <span class="token operator">&gt;=</span> which<span class="token operator">-&gt;</span>_size<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">fputs</span><span class="token punctuation">(</span><span class="token string">&quot;ERROR: on at() with invaild index.\n&quot;</span><span class="token punctuation">,</span> <span class="token constant">stderr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">exit</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-struct">struct</span> <span class="token class-name">__NODE_OF_double</span> <span class="token operator">*</span>needle <span class="token operator">=</span> which<span class="token operator">-&gt;</span>_visitor_node<span class="token punctuation">;</span>
+    <span class="token keyword keyword-struct">struct</span> <span class="token class-name">__NODE_OF_double</span> <span class="token operator">*</span>stop <span class="token operator">=</span> which<span class="token operator">-&gt;</span>_holder_node<span class="token punctuation">;</span>
+    <span class="token class-name">size_t</span> at <span class="token operator">=</span> which<span class="token operator">-&gt;</span>_at_visit<span class="token punctuation">;</span>
+    <span class="token class-name">size_t</span> half <span class="token operator">=</span> <span class="token punctuation">(</span>which<span class="token operator">-&gt;</span>_size<span class="token punctuation">)</span> <span class="token operator">&gt;&gt;</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span>at <span class="token operator">&gt;</span> index<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token punctuation">(</span>at <span class="token operator">-</span> index<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token punctuation">(</span>index <span class="token operator">-</span> at<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&gt;</span> half<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>at <span class="token operator">&gt;</span> half<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            needle <span class="token operator">=</span> stop<span class="token operator">-&gt;</span>_next<span class="token punctuation">;</span>
+            at <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword keyword-else">else</span>
+        <span class="token punctuation">{</span>
+            needle <span class="token operator">=</span> stop<span class="token operator">-&gt;</span>_previous<span class="token punctuation">;</span>
+            at <span class="token operator">=</span> which<span class="token operator">-&gt;</span>_size <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-while">while</span> <span class="token punctuation">(</span>at <span class="token operator">&lt;</span> index<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        needle <span class="token operator">=</span> needle<span class="token operator">-&gt;</span>_next<span class="token punctuation">;</span>
+        <span class="token operator">++</span>at<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-while">while</span> <span class="token punctuation">(</span>at <span class="token operator">&gt;</span> index<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        needle <span class="token operator">=</span> needle<span class="token operator">-&gt;</span>_previous<span class="token punctuation">;</span>
+        <span class="token operator">--</span>at<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    which<span class="token operator">-&gt;</span>_at_visit <span class="token operator">=</span> at<span class="token punctuation">;</span>
+    which<span class="token operator">-&gt;</span>_visitor_node <span class="token operator">=</span> needle<span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> needle<span class="token operator">-&gt;</span>__data<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">list_double_remove</span><span class="token punctuation">(</span>list_double <span class="token operator">*</span>which<span class="token punctuation">,</span> <span class="token class-name">size_t</span> index<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>which<span class="token operator">-&gt;</span>_size<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">fputs</span><span class="token punctuation">(</span><span class="token string">&quot;ERROR: on remove() of empty list.&quot;</span><span class="token punctuation">,</span> <span class="token constant">stderr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">exit</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-struct">struct</span> <span class="token class-name">__NODE_OF_double</span> <span class="token operator">*</span>needle <span class="token operator">=</span> which<span class="token operator">-&gt;</span>_visitor_node<span class="token punctuation">;</span>
+    <span class="token keyword keyword-struct">struct</span> <span class="token class-name">__NODE_OF_double</span> <span class="token operator">*</span>stop <span class="token operator">=</span> which<span class="token operator">-&gt;</span>_holder_node<span class="token punctuation">;</span>
+    <span class="token class-name">size_t</span> at <span class="token operator">=</span> which<span class="token operator">-&gt;</span>_at_visit<span class="token punctuation">;</span>
+    <span class="token keyword keyword-while">while</span> <span class="token punctuation">(</span>at <span class="token operator">&lt;</span> index<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>needle <span class="token operator">==</span> stop<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token function">fputs</span><span class="token punctuation">(</span><span class="token string">&quot;ERROR: on remove() with up-outbounded index.\n&quot;</span><span class="token punctuation">,</span> <span class="token constant">stderr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">exit</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        needle <span class="token operator">=</span> needle<span class="token operator">-&gt;</span>_next<span class="token punctuation">;</span>
+        <span class="token operator">++</span>at<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-while">while</span> <span class="token punctuation">(</span>at <span class="token operator">&gt;</span> index<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>needle <span class="token operator">==</span> stop<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token function">fputs</span><span class="token punctuation">(</span><span class="token string">&quot;ERROR: on remove() with down-outbounded index.\n&quot;</span><span class="token punctuation">,</span> <span class="token constant">stderr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">exit</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        needle <span class="token operator">=</span> needle<span class="token operator">-&gt;</span>_previous<span class="token punctuation">;</span>
+        <span class="token operator">--</span>at<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>needle<span class="token operator">-&gt;</span>_previous <span class="token operator">!=</span> stop<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        which<span class="token operator">-&gt;</span>_visitor_node <span class="token operator">=</span> needle<span class="token operator">-&gt;</span>_previous<span class="token punctuation">;</span>
+        which<span class="token operator">-&gt;</span>_at_visit <span class="token operator">=</span> at <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-else">else</span> <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>needle<span class="token operator">-&gt;</span>_next <span class="token operator">!=</span> stop<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        which<span class="token operator">-&gt;</span>_visitor_node <span class="token operator">=</span> needle<span class="token operator">-&gt;</span>_next<span class="token punctuation">;</span>
+        which<span class="token operator">-&gt;</span>_at_visit <span class="token operator">=</span> at <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-else">else</span>
+    <span class="token punctuation">{</span>
+        which<span class="token operator">-&gt;</span>_visitor_node <span class="token operator">=</span> which<span class="token operator">-&gt;</span>_holder_node<span class="token operator">-&gt;</span>_next<span class="token punctuation">;</span>
+        which<span class="token operator">-&gt;</span>_at_visit <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    needle<span class="token operator">-&gt;</span>_previous<span class="token operator">-&gt;</span>_next <span class="token operator">=</span> needle<span class="token operator">-&gt;</span>_next<span class="token punctuation">;</span>
+    needle<span class="token operator">-&gt;</span>_next<span class="token operator">-&gt;</span>_previous <span class="token operator">=</span> needle<span class="token operator">-&gt;</span>_previous<span class="token punctuation">;</span>
+    <span class="token function">free</span><span class="token punctuation">(</span>needle<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token operator">--</span>which<span class="token operator">-&gt;</span>_size<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword keyword-double">double</span> <span class="token function">list_double_pop_back</span><span class="token punctuation">(</span>list_double <span class="token operator">*</span>which<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-double">double</span> ret<span class="token punctuation">;</span>
+    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>which<span class="token operator">-&gt;</span>_size<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">fputs</span><span class="token punctuation">(</span><span class="token string">&quot;ERROR: on pop() of empty list.&quot;</span><span class="token punctuation">,</span> <span class="token constant">stderr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">exit</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-struct">struct</span> <span class="token class-name">__NODE_OF_double</span> <span class="token operator">*</span>res <span class="token operator">=</span> which<span class="token operator">-&gt;</span>_holder_node<span class="token operator">-&gt;</span>_previous<span class="token punctuation">;</span>
+    res<span class="token operator">-&gt;</span>_previous<span class="token operator">-&gt;</span>_next <span class="token operator">=</span> which<span class="token operator">-&gt;</span>_holder_node<span class="token punctuation">;</span>
+    which<span class="token operator">-&gt;</span>_holder_node<span class="token operator">-&gt;</span>_previous <span class="token operator">=</span> res<span class="token operator">-&gt;</span>_previous<span class="token punctuation">;</span>
+    <span class="token operator">--</span>which<span class="token operator">-&gt;</span>_size<span class="token punctuation">;</span>
+    ret <span class="token operator">=</span> res<span class="token operator">-&gt;</span>__data<span class="token punctuation">;</span>
+    <span class="token function">free</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>which<span class="token operator">-&gt;</span>_at_visit<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        which<span class="token operator">-&gt;</span>_visitor_node <span class="token operator">=</span> which<span class="token operator">-&gt;</span>_holder_node<span class="token operator">-&gt;</span>_next<span class="token punctuation">;</span>
+        which<span class="token operator">-&gt;</span>_at_visit <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-return">return</span> ret<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword keyword-double">double</span> <span class="token function">list_double_pop_head</span><span class="token punctuation">(</span>list_double <span class="token operator">*</span>which<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-double">double</span> ret<span class="token punctuation">;</span>
+    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>which<span class="token operator">-&gt;</span>_size<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">fputs</span><span class="token punctuation">(</span><span class="token string">&quot;ERROR: on pop() of empty list.&quot;</span><span class="token punctuation">,</span>
+              <span class="token constant">stderr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">exit</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-struct">struct</span> <span class="token class-name">__NODE_OF_double</span> <span class="token operator">*</span>res <span class="token operator">=</span> which<span class="token operator">-&gt;</span>_holder_node<span class="token operator">-&gt;</span>_next<span class="token punctuation">;</span>
+    res<span class="token operator">-&gt;</span>_next<span class="token operator">-&gt;</span>_previous <span class="token operator">=</span> which<span class="token operator">-&gt;</span>_holder_node<span class="token punctuation">;</span>
+    which<span class="token operator">-&gt;</span>_holder_node<span class="token operator">-&gt;</span>_next <span class="token operator">=</span> res<span class="token operator">-&gt;</span>_next<span class="token punctuation">;</span>
+    <span class="token operator">--</span>which<span class="token operator">-&gt;</span>_size<span class="token punctuation">;</span>
+    ret <span class="token operator">=</span> res<span class="token operator">-&gt;</span>__data<span class="token punctuation">;</span>
+    <span class="token function">free</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-if">if</span> <span class="token punctuation">(</span>which<span class="token operator">-&gt;</span>_at_visit<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        which<span class="token operator">-&gt;</span>_visitor_node <span class="token operator">=</span> which<span class="token operator">-&gt;</span>_holder_node<span class="token operator">-&gt;</span>_next<span class="token punctuation">;</span>
+        which<span class="token operator">-&gt;</span>_at_visit <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-return">return</span> ret<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">list_double_clear</span><span class="token punctuation">(</span>list_double <span class="token operator">*</span>which<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-struct">struct</span> <span class="token class-name">__NODE_OF_double</span> <span class="token operator">*</span>needle <span class="token operator">=</span> which<span class="token operator">-&gt;</span>_holder_node<span class="token operator">-&gt;</span>_next<span class="token punctuation">;</span>
+    <span class="token keyword keyword-struct">struct</span> <span class="token class-name">__NODE_OF_double</span> <span class="token operator">*</span>stop <span class="token operator">=</span> which<span class="token operator">-&gt;</span>_holder_node<span class="token punctuation">;</span>
+    <span class="token keyword keyword-while">while</span> <span class="token punctuation">(</span>needle <span class="token operator">!=</span> stop<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword keyword-struct">struct</span> <span class="token class-name">__NODE_OF_double</span> <span class="token operator">*</span>tmp <span class="token operator">=</span> needle<span class="token punctuation">;</span>
+        needle <span class="token operator">=</span> needle<span class="token operator">-&gt;</span>_next<span class="token punctuation">;</span>
+        <span class="token function">free</span><span class="token punctuation">(</span>tmp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    which<span class="token operator">-&gt;</span>_size <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    which<span class="token operator">-&gt;</span>_visitor_node <span class="token operator">=</span> which<span class="token operator">-&gt;</span>_holder_node<span class="token operator">-&gt;</span>_next<span class="token punctuation">;</span>
+    which<span class="token operator">-&gt;</span>_at_visit <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword keyword-void">void</span> <span class="token function">list_double_delete</span><span class="token punctuation">(</span>list_double <span class="token operator">*</span>which<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword keyword-struct">struct</span> <span class="token class-name">__NODE_OF_double</span> <span class="token operator">*</span>needle <span class="token operator">=</span> which<span class="token operator">-&gt;</span>_holder_node<span class="token operator">-&gt;</span>_next<span class="token punctuation">;</span>
+    <span class="token keyword keyword-struct">struct</span> <span class="token class-name">__NODE_OF_double</span> <span class="token operator">*</span>stop <span class="token operator">=</span> which<span class="token operator">-&gt;</span>_holder_node<span class="token punctuation">;</span>
+    <span class="token keyword keyword-while">while</span> <span class="token punctuation">(</span>needle <span class="token operator">!=</span> stop<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword keyword-struct">struct</span> <span class="token class-name">__NODE_OF_double</span> <span class="token operator">*</span>tmp <span class="token operator">=</span> needle<span class="token punctuation">;</span>
+        needle <span class="token operator">=</span> needle<span class="token operator">-&gt;</span>_next<span class="token punctuation">;</span>
+        <span class="token function">free</span><span class="token punctuation">(</span>tmp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">free</span><span class="token punctuation">(</span>which<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span> <span class="token comment">//list_of_double_h</span></span>
+</pre>
+        </blockquote>
+      </details>
+      <blockquote>
+        <p>&#x8FD9;&#x662F;&#x4E00;&#x4EFD;&#x4EFF; C++ STL
+          &#x63A5;&#x53E3;&#x7684;&#x73AF;&#x94FE;&#x8868;&#x5B9E;&#x73B0;&#x6E90;&#x7801;&#xFF0C;&#x53EA;&#x5B9E;&#x73B0;&#x4E86;double&#x7C7B;&#x578B;&#x3002;&#x4EC5;&#x5F53;&#x5B66;&#x4E60;&#x4E4B;&#x7528;&#x3002;<br>
+          &#x73B0;&#x5728;&#x7684;&#x4F60;&#x4E5F;&#x8BB8;&#x4E0D;&#x4F1A;&#x770B;&#x61C2;&#x5B83;&#xFF0C;&#x4F46;&#x662F;&#x4F60;&#x603B;&#x4F1A;&#x6709;&#x4E0E;&#x5B83;&#x518D;&#x76F8;&#x89C1;&#x7684;&#x65F6;&#x5019;&#x2014;&#x2014;&#x4E3A;&#x4E86;&#x67D0;&#x79CD;&#x76EE;&#x7684;&#xFF1A;&#x4E5F;&#x8BB8;&#x662F;&#x6210;&#x7EE9;&#xFF0C;&#x4E5F;&#x8BB8;&#x662F;&#x6280;&#x80FD;&#x3002;<br>
+          &#x4F46;&#x6211;&#x51B3;&#x5B9A;&#x5C06;&#x8FD9;&#x4F5C;&#x4E3A;&#x5168;&#x7BC7;&#x6587;&#x5B57;&#x4EC5;&#x6709;&#x7684;&#x590D;&#x6742;&#x5B9E;&#x73B0;&#x653E;&#x5728;&#x8FD9;&#x91CC;&#xFF0C;<br>
+          &#x4F5C;&#x6700;&#x540E;&#x7684;&#x9053;&#x522B;&#x3002;</p>
+      </blockquote>
     </div>
 
 
