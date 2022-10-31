@@ -38,7 +38,7 @@
 <body>
 <div style="width: 100%; min-width: 430px; max-width:800px">
 
-> 2022-05-15 SUN
+> 2022-10-31 MON
 
 <h1 id="h1">C语言指针指北</h1>
 <table><tr><td width="80"> <a href="https://gitee.com/Tomnycui"><img id="i0" src="./Knock.png"></a> </td> <td style="word-break:break-all"> <i>阅读本文，你将得到： <bk/> 对<b>内存</b>、<b>指针</b>、<b>字符串</b>、<b>函数调用和参数传递</b>、<b>文件操作</b> 的深刻理解。</i> </td> </tr></table>
@@ -100,6 +100,8 @@ A byte is the smallest addressable unit of memory. It is defined as a contiguo
 <font color="#AC6E46"><b>因为只介绍了<ruby>内存位置<rt>memory location</rt></ruby>而没有提及<ruby>内存顺序<rt>memory order</rt></ruby>，后者是多线程下的问题，希望你永远不会遇到。</b></font>
 <font color="71AEE2"><b>所以介绍这个到底有什么用呢？<ruby>（半恼）<rt><i>赫尔墨特有急躁</i></rt></ruby></b></font>
 
+*注：以下所有内容均在 C 的内存模型中进行讨论。*
+
 <h2 id="cp2">第二节：指针！指针！</h2>
 <table><tr><td width="80"><a href="#h1"><img id="i2" src="./Geminiadfucine.png"></a> </td><td> <i>The Pointers permits no seal and no isolation. It thrusts us gleefully out of the safety of ignorance.</i> </td></tr></table>
 
@@ -114,7 +116,7 @@ A byte is the smallest addressable unit of memory. It is defined as a contiguo
 - 指针是一种整型变量，在64位系统上，指针等同于 `unsigned long long` ，大小为8 `byte`。
 - 因为所有的变量指针都是 `unsigned long long`， 因此指针没有严格意义上的类型。
 - <small>（接上条）</small>**通常意义下指针的所谓 “类型” 实际上是一个编译器标签。我们沿用 “类型” 这个称呼。**
-- <small>（接上条）</small>因为所有<ruby>指针<rt>变量指针</rt></ruby>都是 `unsigned long long`，因此它们之间可以相互转换。
+- <small>（接上条）</small>因为所有<ruby>指针<rt>变量指针</rt></ruby>都被规定为相同的内存布局，因此它们之间可以相互转换。
 - 一般情况下，指针储存的值以“<ruby>地址<rt>address</rt></ruby>”的语义进行解释。
 
 <font color="DeepPink"><b>THUS</b></font>
@@ -344,16 +346,16 @@ int *needle = &(array[2]);
 <font color="Gold"><b>[WARNING: ]</font> 接下来开始提及的内容请务必认真注意。</b>
 
 注意到刚刚我们使用的数组下标是在定义范围内的。如果使用范围外的内存会发生什么？<small><span class="lumia">例如：数组下标越界、指针指向的地址是你不该动的……</span></small>
-<blockquote><div align="center">我很想这么说：「什么都不会发生。」<br/>但我的运气实在是太坏了。</div><div align="right">——沃·兹基硕德</div></blockquote>
+<blockquote><div align="center">「什么都不会发生。」</div><div align="right">——这是可能的</div></blockquote>
 
-实际上，一切皆有可能，包括系统崩溃。
+实际上，一切皆有可能，除了系统崩溃。
 这是因为：内存是连续的，理论上合法的内存地址是 <code>0~2<sup>64</sup> - 1</code> ，因此只要是这个范围内的地址指向的 `byte`，都是可以访问的——唯一问题是这些 `byte` 是不是你能用的——例如别的程序（包括系统）的内存区域。<b>一旦动了你不该动的数据，很可能就是你的程序<font color="Orange" size="5">寄</font>或被你攻击的程序<font color="Orange" size="5">寄</font>。</b>
 
-但是也有一个好消息：万一崩系统了，重启就好了。
+但是也有一个好消息：系统不会崩，操作系统的存在意义之一就是防这个。
 
 <font color="#71AEE2"><b>不是，为什么我的程序会<font size="5">寄</font>？<font>¯\\\_(ツ)\_\/¯</font></b></font>
-<font color="#AC6E46"><b>因为如果你尝试动操作系统的内存，对面有（很大）几率先下手为强。（笑）</b></font>
-<font color="#71AEE2"><b>那我的内存不够用怎么办？ (┙>∧<)┙へ┻┻</b></font>
+<font color="#AC6E46"><b>因为系统和CPU间有某些交易（</b></font>
+<font color="#71AEE2"><b>那为什么系统不帮我管内存呢 (┙>∧<)┙へ┻┻</b></font>
 
 <details><summary>知识扩充：「慢着慢着，你还没讲字符串呢！」</summary><blockquote><s>出现在标题不代表会讲。</s><br/>字符串实际上是一种特殊的数组：
 
